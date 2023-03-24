@@ -31,8 +31,20 @@ map<int, Media> Mediatheque::getMedias(){
     return mediaList;
 }
 
+
 Media Mediatheque::findById(int id){
-    return mediaList.find(id);
+    
+    auto media_ite = mediaList.find(id); // return a pair of iterator
+
+    //If the media exist
+    if(media_ite != mediaList.end()){
+        return media_ite->second; // The value of the iterator
+    }
+    else{
+        // The media is not found in the map
+        throw runtime_error( "Media not found in map for searching by ID : " + id);
+    }     
+
 }
 map<int, Media> Mediatheque::findByTitle(string title){
 
