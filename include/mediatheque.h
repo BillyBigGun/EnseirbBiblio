@@ -16,7 +16,6 @@ class Mediatheque{
 private:
     
     map<int, Media> mediaList; // The list of all media in the mediatheque
-    map<int, Media> mediaSearch; // The list of media in the current search
 
 public:
     Mediatheque();
@@ -33,38 +32,44 @@ public:
      * @brief Search media in the mediatheque that contain this title
      * 
      * @param title The title name for the search
+     * @param currentSearch The current search
      * @return map<int, Media> The map containing all media that contain the title name
      */
-    map<int, Media> findByTitle(string title);
+    map<int, Media> findByTitle(string title, map<int, Media> currentSearch);
     /**
      * @brief Search media in the mediatheque that contain this author name
      * 
      * @param author The name of the author for the search
+     * @param currentSearch The current search
      * @return map<int, Media> The map of all the media that contain this author name
      */
-    map<int, Media> findByAuthor(string author); 
+    map<int, Media> findByAuthor(string author, map<int, Media> currentSearch); 
     
     /**
      * @brief Search media in the mediatheque that contain this style
      * 
      * @param style The style for the search
+     * @param currentSearch The current search
      * @return map<int, Media> The map of all the media that contain this style
      */
-    map<int, Media> findByStyle(string style);
+    map<int, Media> findByStyle(string style, map<int, Media> currentSearch);
 
    /**
     * @brief Search media in the mediatheque that contain this track
     * 
     * @param track The name of the track for the search
+    * @param currentSearch The current search
     * @return map<int, Media> The map of all the media that contain that track
     */
-    map<int, Media> findByTrack(string track);
+    map<int, Media> findByTrack(string track, map<int, Media> currentSearch);
 
     /**
-     * @brief Reset the search to be able to search from every media in the mediatheque
+     * @brief Reset the search to be able to search from every media in the mediatheque. 
+     * Reset by making it equal to the medaitheque list
      * 
+     * @param currentSearch
      */
-    void clearSearch();
+    void clearSearch(map<int, Media> currentSearch);
 
     /**
      * @brief Print the information about the media
@@ -87,6 +92,10 @@ public:
      */
     void saveMediatheque(string filename); 
 
+    /**
+     * @brief Delete all the data in the mediatheque
+     * 
+     */
     void reset(); // Clear the mediatheque
 };
 
