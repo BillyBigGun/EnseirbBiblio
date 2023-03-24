@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 
-#include "commandManager.h"
+#include "include/commandManager.h"
 
 int main(int argc, char *argv[])
 {
