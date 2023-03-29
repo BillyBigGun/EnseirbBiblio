@@ -3,11 +3,13 @@
 #include <fstream>
 #include <string>
 
-#include "include/commandManager.h"
+#include "commandManager.h"
 
 int main(int argc, char *argv[])
 {
-    
+    CommandManager* commandManager = new CommandManager();
+
+    commandManager->executeCommand("ADD CD");
 
     return 0;
 }
