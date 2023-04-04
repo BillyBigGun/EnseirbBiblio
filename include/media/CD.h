@@ -5,6 +5,7 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include <list>
 
 using namespace std;
 
@@ -14,7 +15,10 @@ class CD : public Media{
     CD(int id, string title, string author, string style, int _nbPages, string _date,int _duration, int _nbTrack, string _tracksTitle[], string _productionCompany) : Media(id, title, author, style){
         duration = _duration;
         nbTrack = _nbTrack;
-        tracksTitle = _tracksTitle;
+        for (int i = 0; i < _nbTrack; i++)
+        {
+            tracksTitle.push_back(_tracksTitle[i]);
+        }
         productionCompany = _productionCompany;
     }
     //deconstructeur
@@ -32,7 +36,7 @@ class CD : public Media{
     //attributs
     int duration;
     int nbTrack;
-    string tracksTitle[];
+    list<string> tracksTitle;
     string productionCompany;
 };
 

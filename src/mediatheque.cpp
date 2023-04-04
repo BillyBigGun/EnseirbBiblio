@@ -2,6 +2,22 @@
 
 #include "mediatheque.h"
 
+
+/**
+ * @brief Split a string by a delimiter and return a vector of string
+ * 
+ * @param inputString the string to split 
+ * @param delim the delimiter
+ * @param outputString the vector of string to fill 
+ */
+void splitString(const string &inputString, const char delim, vector<string> &outputString) {
+    stringstream ss(inputString);
+    string item;
+    while (getline(ss, item, delim)) {
+        outputString.push_back(item);
+    }
+}
+
 Mediatheque::Mediatheque(){
     clearSearch();
 }
@@ -81,26 +97,26 @@ map<int, Media> Mediatheque::findByAuthor(string author){
 } 
 
 // TODO Get only the media that have a style
-map<int, Media> Mediatheque::findByStyle(string style){
+// map<int, Media> Mediatheque::findByStyle(string style){
 
-    // map<int, Media> newSearch;
-    // for (auto media_ite : currentSearch){
-    //     // Second == media
-    //     Media currentMedia = media_ite.second;
-    //     string mediaStyle = currentMedia.getStyle();
-    //     // Find if a substring in the title correspond to the title in parameter
-    //     // Add it to the new search
-    //     if(mediaTitle.find(style) != string::npos){
-    //         newSearch.insert({currentMedia.getId(), currentMedia});
-    //     }
-    // }
+//     // map<int, Media> newSearch;
+//     // for (auto media_ite : currentSearch){
+//     //     // Second == media
+//     //     Media currentMedia = media_ite.second;
+//     //     string mediaStyle = currentMedia.getStyle();
+//     //     // Find if a substring in the title correspond to the title in parameter
+//     //     // Add it to the new search
+//     //     if(mediaTitle.find(style) != string::npos){
+//     //         newSearch.insert({currentMedia.getId(), currentMedia});
+//     //     }
+//     // }
 
-    // return newSearch;
-}
+//     // return newSearch;
+// }
 
-map<int, Media> Mediatheque::findByTrack(string track){
+// map<int, Media> Mediatheque::findByTrack(string track){
 
-}
+// }
 
 void Mediatheque::clearSearch(){
     currentSearch = mediaList;
@@ -123,6 +139,27 @@ void Mediatheque::showSearch(){
 }
 
 void createMediaFromString(string mediaString){
+    // substring with delimiter 
+    vector<string> mediaInfo;
+    splitString(mediaString, ';', mediaInfo);
+
+    // Depending on the type of media, create the right media
+    if (mediaInfo[0].compare("Book") == 0)
+    {
+        Book* book = new Book(mediaInfo[1], mediaInfo[2], mediaInfo[3], mediaInfo[4], mediaInfo[5], mediaInfo[6]);
+        Mediatheque::addMedia(book);
+    }
+    else if(mediaInfo[0].compare("CD")){
+        CD* cd = new CD(mediaInfo[1], mediaInfo[2], mediaInfo[3], mediaInfo[4], mediaInfo[5], mediaInfo[6]);
+        Mediatheque::addMedia(cd);
+    }
+    else if(mediaInfo[0].compare("DVD")){
+        DVD* dvd = new DVD(mediaInfo[1], mediaInfo[2], mediaInfo[3], mediaInfo[4], mediaInfo[5], mediaInfo[6]);
+        Mediatheque::addMedia(dvd);
+    }
+    else{
+        throw new runtime_error("The media type is not recognized.");
+    }
 
 }
 
@@ -135,12 +172,17 @@ void Mediatheque::loadMediatheque(string filename){
     ifstream readFile(filePath);
     if(readFile.good())
     {
+        //Check if end of file
         while(readFile.getline(mediaChar, max_char, delimiter) != istream().end()){
             string mediaString = mediaChar.toString();
             createMediaFromString(mediaString);
         }
         
     }
+    else{
+        throw new runtime_error("The file could not be open.");
+    }
+    
 
 } // Load the mediatheque from a filename
 

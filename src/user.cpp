@@ -4,11 +4,11 @@
 #include<string>
 
 
-int User :: getId(){
+int User::getId(){
 	return id;
 }
 
-string User :: getName(){
+string User::getName(){
 	return name;
 }
 

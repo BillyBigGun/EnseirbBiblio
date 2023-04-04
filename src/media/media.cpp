@@ -4,9 +4,9 @@
 #include<string>
 #include<chrono>
 
-void Media :: borrow(User _userBorrow){
+void Media :: borrow(int _userBorrowId){
     if(isAvailable==1){
-    userBorrow = _userBorrow;
+    userBorrowId = _userBorrowId;
     isAvailable = 0;
     }
     else 
@@ -36,19 +36,19 @@ bool Media :: reserved(){
     return reserve;
 }
 
-void Media :: reserveMedia(User _userReserve){
+void Media :: reserveMedia(int _userReserveId){
     if(reserved()==1){
         cout<<"ERROR media already reserved"<<endl;
     }
     else {
-        userReserve = _userReserve;
+        userReserveId = _userReserveId;
         reserve=0;
     }
 }
 
 void Media :: returnMedia(){
     if(reserved()== 1){
-        borrow(userReserve);
+        borrow(userReserveId);
         reserve=0;
     }
     else {

@@ -8,7 +8,7 @@
 using namespace std;
 
 class User {
-    public : 
+public : 
     //constructeur
     User(int _id, string _name, string _surname){
         id = _id;
@@ -27,7 +27,7 @@ class User {
     string getName();
     string getSurname();
 
-	private : 
+private : 
     //attributs
     int id;
     string name;

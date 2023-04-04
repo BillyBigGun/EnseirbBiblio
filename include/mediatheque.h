@@ -6,6 +6,8 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <vector>
+#include <sstream> 
 
 #include "media.h"
 #include "book.h"

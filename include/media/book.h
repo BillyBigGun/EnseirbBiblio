@@ -10,6 +10,7 @@ using namespace std;
 
 class Book : public Media{
     public : 
+    Book(){}
     //constructeur
     Book(int id, string title, string author, string style, int _nbPages, string _date, string _collection, string _resume) : Media(id, title, author, style) {
         nbPages = _nbPages;

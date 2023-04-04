@@ -5,12 +5,11 @@
 #include<fstream>
 #include<string>
 
-#include "../user.h"
-
 using namespace std;
 
 class Media{
     public : 
+    Media(){}
     //constructeur
     Media(int _id, string _title, string _author, string _style){
         id = _id;
@@ -25,13 +24,13 @@ class Media{
     }
 
     //methodes
-    void borrow(User _userBorrow);
+    void borrow(int _userBorrowId);
     string getTitle();
     string getAuthor();
     int getId();
     bool available();
     bool reserved();
-    void reserveMedia(User _userReserve);
+    void reserveMedia(int _userReserveId);
     void returnMedia();
     void show();
 
@@ -43,8 +42,8 @@ class Media{
     string style;
     bool isAvailable;
     bool reserve;
-    User userReserve;
-    User userBorrow;
+    int userReserveId;
+    int userBorrowId;
     //methodes
 
 };
