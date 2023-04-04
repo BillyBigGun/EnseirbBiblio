@@ -1,6 +1,6 @@
 
 #ifndef MEDIATHEQUE_H
-#define mEDIATHEQUE_H
+#define MEDIATHEQUE_H
 
 #include <iostream>
 #include <fstream>
@@ -8,6 +8,17 @@
 #include <map>
 
 #include "media.h"
+#include "book.h"
+#include "CD.h"
+#include "digitalRessources.h"
+#include "DVD.h"
+#include "magazine.h"
+#include "VHS.h"
+
+#include "user.h"
+
+
+#define Database_Path "DatabaseTxt/"
 
 using namespace std;
 
@@ -16,13 +27,20 @@ class Mediatheque{
 private:
     
     map<int, Media> mediaList; // The list of all media in the mediatheque
+    map<int, Media> currentSearch;
+    map<int, User> userList;
+    User currentUser;
 
 public:
     Mediatheque();
     Mediatheque(string fileName);
     ~Mediatheque();
 
+    User getUser(int id);
+    map<int, User> getUsers();
+
     void addMedia(Media media);
+
     void deleteMedia(Media media);
     map<int, Media> getMedias();
 
@@ -35,7 +53,7 @@ public:
      * @param currentSearch The current search
      * @return map<int, Media> The map containing all media that contain the title name
      */
-    map<int, Media> findByTitle(string title, map<int, Media> currentSearch);
+    map<int, Media> findByTitle(string title);
     /**
      * @brief Search media in the mediatheque that contain this author name
      * 
@@ -43,7 +61,7 @@ public:
      * @param currentSearch The current search
      * @return map<int, Media> The map of all the media that contain this author name
      */
-    map<int, Media> findByAuthor(string author, map<int, Media> currentSearch); 
+    map<int, Media> findByAuthor(string author); 
     
     /**
      * @brief Search media in the mediatheque that contain this style
@@ -52,7 +70,7 @@ public:
      * @param currentSearch The current search
      * @return map<int, Media> The map of all the media that contain this style
      */
-    map<int, Media> findByStyle(string style, map<int, Media> currentSearch);
+    map<int, Media> findByStyle(string style);
 
    /**
     * @brief Search media in the mediatheque that contain this track
@@ -61,7 +79,7 @@ public:
     * @param currentSearch The current search
     * @return map<int, Media> The map of all the media that contain that track
     */
-    map<int, Media> findByTrack(string track, map<int, Media> currentSearch);
+    map<int, Media> findByTrack(string track);
 
     /**
      * @brief Reset the search to be able to search from every media in the mediatheque. 
@@ -69,7 +87,7 @@ public:
      * 
      * @param currentSearch
      */
-    void clearSearch(map<int, Media> currentSearch);
+    void clearSearch();
 
     /**
      * @brief Print the information about the media
@@ -77,6 +95,12 @@ public:
      * @param id The id of the media to print
      */
     void showMedia(int id); 
+
+    /**
+     * @brief Display all the media in the search list
+     * 
+     */
+    void showSearch();
 
     /**
      * @brief Load the mediatheque from a filename

@@ -3,13 +3,28 @@
 
 CommandManager::CommandManager(){
     commands["ADD"] = new AddCommand();
+    commands["BYE"] = new ByeCommand();
+    commands["CLEAR"] = new ClearCommand();
+    commands["DELETE"] = new DeleteCommand();
+    commands["LIST"] = new ListCommand();
+    commands["LOAD"] = new LoadCommand();
+    commands["RESET"] = new ResetCommand();
+    commands["SAVE"] = new SaveCommand();
+    commands["SEARCH"] = new SearchCommand();
+    commands["SHOW"] = new ShowCommand();
 }
 
 /**
- * @brief 
+ * @brief Split the command received in two if possible. 
+ * Ex: "ADD book" --> ["ADD", "book"]. 
+ * 
+ * Check every caracters of the string until a space or the end of the string
+ * The caracters before the space is the command type
+ * If there a space, there is another param
+ * If no space there is only the command type
  * 
  * @param command 
- * @return string* 
+ * @return string* A array pf 2 elements. First element : Command. Second Element: Parameter (can be NULL).
  */
 string* splitCommand(string command)
 {
@@ -21,10 +36,7 @@ string* splitCommand(string command)
     int pos = 0;
     bool is_first_param = true;
 
-    //Check every caracters of the string until a space or the end of the string
-    //The caracters before the space is the command type
-    //If there a space, there is another param
-    //If no space there is only the command type
+    
     while(pos != command.length() - 1){
         if(is_first_param)
         {

@@ -3,10 +3,11 @@
 #include "mediatheque.h"
 
 Mediatheque::Mediatheque(){
-
+    clearSearch();
 }
 
 Mediatheque::Mediatheque(string filename){
+    loadMediatheque(filename);
 
 }
 
@@ -44,7 +45,7 @@ Media Mediatheque::findById(int id){
     }     
 
 }
-map<int, Media> Mediatheque::findByTitle(string title, map<int, Media> currentSearch){
+map<int, Media> Mediatheque::findByTitle(string title){
     
     map<int, Media> newSearch;
     // Compare the titles and add to a map is they match
@@ -62,7 +63,7 @@ map<int, Media> Mediatheque::findByTitle(string title, map<int, Media> currentSe
 
     return newSearch;
 }
-map<int, Media> Mediatheque::findByAuthor(string author, map<int, Media> currentSearch){
+map<int, Media> Mediatheque::findByAuthor(string author){
 
     map<int, Media> newSearch;
     for (auto media_ite : currentSearch){
@@ -80,7 +81,7 @@ map<int, Media> Mediatheque::findByAuthor(string author, map<int, Media> current
 } 
 
 // TODO Get only the media that have a style
-map<int, Media> Mediatheque::findByStyle(string style, map<int, Media> currentSearch){
+map<int, Media> Mediatheque::findByStyle(string style){
 
     // map<int, Media> newSearch;
     // for (auto media_ite : currentSearch){
@@ -97,21 +98,73 @@ map<int, Media> Mediatheque::findByStyle(string style, map<int, Media> currentSe
     // return newSearch;
 }
 
-map<int, Media> Mediatheque::findByTrack(string track, map<int, Media> currentSearch){
+map<int, Media> Mediatheque::findByTrack(string track){
 
 }
 
-void Mediatheque::clearSearch(map<int, Media> currentSearch){
+void Mediatheque::clearSearch(){
     currentSearch = mediaList;
 }
 void Mediatheque::showMedia(int id){
+    try{
+        Media media = findById(id);
+        media.show();
+        // TODO Add the function to display the media in each media
+    }
+    catch(exception e){printf("Media Not found. Cannot print it's value.");}
+    
 
 } //Print the information about the media
 
-void loadMediatheque(string filename){
+void Mediatheque::showSearch(){
+    for(auto x : currentSearch){
+        x.second.show(); 
+    }
+}
+
+void createMediaFromString(string mediaString){
+
+}
+
+void Mediatheque::loadMediatheque(string filename){
+    string filePath = Database_Path + filename;
+    int max_char = 1000;
+    char mediaChar[max_char];
+    char delimiter = '\n';
+
+    ifstream readFile(filePath);
+    if(readFile.good())
+    {
+        while(readFile.getline(mediaChar, max_char, delimiter) != istream().end()){
+            string mediaString = mediaChar.toString();
+            createMediaFromString(mediaString);
+        }
+        
+    }
 
 } // Load the mediatheque from a filename
 
-void saveMediatheque(string filename){
+void Mediatheque::saveMediatheque(string filename){
+    string filepath = Database_Path + filename;
 
+    ofstream writeFile;
+    writeFile.open(filepath);
+    
+    if(writeFile.good())
+    {
+        for (map<int, Media>::iterator i = mediaList.begin(); i != mediaList.end(); ++i){
+            Media current_media = i->second;
+            
+            // TODO fonction toString()
+            // TODO fonction fromString()
+            //writeFile << current_media.toString() << endl;
+        }
+
+        writeFile.close();
+    }
+    else{
+        throw new runtime_error("The file could not be open.");
+    }
+
+    
 } // Save the mediatheque to a file text

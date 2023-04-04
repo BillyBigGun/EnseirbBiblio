@@ -6,8 +6,19 @@
 #include <string>
 
 #include "mediatheque.h"
+
 #include "command.h"
 #include "addCommand.h"
+#include "byeCommand.h"
+#include "clearCommand.h"
+#include "deleteCommand.h"
+#include "listCommand.h"
+#include "loadCommand.h"
+#include "resetCommand.h"
+#include "saveCommand.h"
+#include "searchCommand.h"
+#include "showCommand.h"
+
 
 using namespace std;
 

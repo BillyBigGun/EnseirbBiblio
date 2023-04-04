@@ -13,6 +13,10 @@
   > Pour s'assurer que les fonctions ont le résultat attendu. Voir a ajouter l'extension TestMate dans Visual studio code pour faciliter les tests
 - [] Creer une base de donnee pour les medias (dans un fichier texte)
   > Verifier si il y en pas deja une qui viens avec le projet 
+
+- [] Creer des constructeur par defaut pour les media
+  > Demandent a l'utilisateur d'entrer les valeurs pour creer le media.
+
 - [] Creer toutes les commandes
   - [] BYE
     > lorsque l’utilisateur lance cette commande, il demande simplement à quitter votre application. Dans ce cas là, vous devez tout simplement fermer proprement votre outil (dans le sens destruction des ressources allouées)

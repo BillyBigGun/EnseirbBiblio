@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -c -Wall
 INCLUDES = -I include -I include/commands -I include/media
-SRC = main.cpp media.cpp CD.cpp DVD.cpp magazine.cpp VHS.cpp digitalRessources.cpp book.cpp commandManager.cpp mediatheque.cpp user.cpp
+SRC = main.cpp media.cpp CD.cpp DVD.cpp magazine.cpp VHS.cpp digitalRessources.cpp book.cpp mediatheque.cpp user.cpp command.cpp commandManager.cpp addCommand.cpp
 OBJ = $(SRC:.cpp=.o)
 EXEC = program
 
