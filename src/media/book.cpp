@@ -4,18 +4,27 @@
 #include<string>
 
 
-int  book :: getNbPages(){
+int  Book :: getNbPages(){
     return nbPages;
 }
 
-string book ::  getDate(){
+string Book ::  getDate(){
     return date;
 }
 
-string  book :: getCollection(){
+string  Book :: getCollection(){
     return collection;
 }
 
-string book ::  getResume(){
+string Book ::  getResume(){
     return resume;
+}
+
+void Book::show(){
+    cout<<"...BOOK..."<<id<<endl;
+    Media::show();
+    cout<<"Number of pages : "<<nbPages<<endl;
+    cout<<"Year : "<<date<<endl;
+    cout<<"Collection : "<<collection<<endl;
+    cout<<"Resume : "<<resume<<endl;
 }

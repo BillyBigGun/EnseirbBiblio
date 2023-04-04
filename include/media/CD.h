@@ -1,3 +1,6 @@
+#ifndef CD_H
+#define CD_H
+
 #include "media.h"
 #include<iostream>
 #include<fstream>
@@ -8,7 +11,7 @@ using namespace std;
 class CD : public Media{
     public : 
     //constructeur
-    CD(int _duration, int _nbTrack, string _tracksTitle[], string _productionCompany){
+    CD(int id, string title, string author, string style, int _nbPages, string _date,int _duration, int _nbTrack, string _tracksTitle[], string _productionCompany) : Media(id, title, author, style){
         duration = _duration;
         nbTrack = _nbTrack;
         tracksTitle = _tracksTitle;
@@ -23,6 +26,7 @@ class CD : public Media{
     int getNbTrack();
     string getTracksTitle();
     string getProductionCompany();
+    void show();
 
     private : 
     //attributs
@@ -31,3 +35,5 @@ class CD : public Media{
     string tracksTitle[];
     string productionCompany;
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef BOOK_H
+#define BOOK_H
+
 #include "media.h"
 #include<iostream>
 #include<fstream>
@@ -5,17 +8,17 @@
 
 using namespace std;
 
-class book : public Media{
+class Book : public Media{
     public : 
     //constructeur
-    book(int _nbPages, string _date, string _collection, string _resume){
+    Book(int id, string title, string author, string style, int _nbPages, string _date, string _collection, string _resume) : Media(id, title, author, style) {
         nbPages = _nbPages;
         date = _date;
         collection = _collection;
         resume = _resume;
     }
     //deconstructeur
-    ~book(){
+    ~Book(){
     }
 
     //methodes
@@ -23,6 +26,7 @@ class book : public Media{
     string getDate();
     string getCollection();
     string getResume();
+    void show();
 
     private:
     //attributs
@@ -32,3 +36,5 @@ class book : public Media{
     string resume;
 
 };
+
+#endif

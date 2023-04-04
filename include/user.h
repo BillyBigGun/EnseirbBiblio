@@ -15,6 +15,7 @@ class User {
         name = _name;
         surname = _surname;
     }
+    User(){}
 
 	//deconstructeur
     ~User(){}

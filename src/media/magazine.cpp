@@ -4,14 +4,22 @@
 #include<string>
 
 
-int magasine :: getNbArticles(){
+int Magasine :: getNbArticles(){
     return nbArticles;
 }
 
-string magasine :: getArticles(){
+string Magasine :: getArticles(){
     return articles;
 }
 
-string magasine :: getEditor(){
+string Magasine :: getEditor(){
     return editor;
+}
+
+void Magasine::show(){
+    cout<<"...MAGAZINE..."<<id<<endl;
+    Media::show();
+    cout<<"Number of Articles : "<<nbArticles<<endl;
+    cout<<"Articles : "<<articles<<endl;
+    cout<<"Editor : "<<editor<<endl;
 }

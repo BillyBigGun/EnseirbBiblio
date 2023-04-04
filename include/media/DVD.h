@@ -1,3 +1,6 @@
+#ifndef DVD_H
+#define DVD_H
+
 #include "media.h"
 #include<iostream>
 #include<fstream>
@@ -8,7 +11,7 @@ using namespace std;
 class DVD : public Media{
     public : 
     //constructeur
-    DVD(int _duration, int _nbTrack, string _tracksTitle){
+    DVD(int id, string title, string author, string style,int _duration, int _nbTrack, string _tracksTitle): Media(id, title, author, style){
         duration= _duration;
         nbTrack = _nbTrack;
         tracksTitle = _tracksTitle;
@@ -20,6 +23,7 @@ class DVD : public Media{
     int getDuration();
     int getNbTrack();
     string getTracksTitle();
+    void show();
 
     private : 
     //attributs
@@ -27,3 +31,5 @@ class DVD : public Media{
     int nbTrack;
     string tracksTitle;
 };
+
+#endif

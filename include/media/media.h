@@ -1,14 +1,24 @@
+#ifndef MEDIA_H
+#define MEDIA_H
+
 #include<iostream>
 #include<fstream>
 #include<string>
+
+#include "../user.h"
 
 using namespace std;
 
 class Media{
     public : 
     //constructeur
-    Media(){
-
+    Media(int _id, string _title, string _author, string _style){
+        id = _id;
+        title = _title;
+        author = _author;
+        style = _style;
+        isAvailable = 1;
+        reserve = 0;
         }
     //deconstructeur
     ~Media(){
@@ -21,9 +31,9 @@ class Media{
     int getId();
     bool available();
     bool reserved();
-    string getReturnDate();
     void reserveMedia(User _userReserve);
     void returnMedia();
+    void show();
 
     private : 
     //attributs
@@ -31,11 +41,12 @@ class Media{
     string title;
     string author;
     string style;
-    bool available;
+    bool isAvailable;
     bool reserve;
     User userReserve;
     User userBorrow;
-    string returnDate;
     //methodes
 
 };
+
+#endif

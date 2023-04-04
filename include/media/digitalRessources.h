@@ -1,3 +1,6 @@
+#ifndef DIGITAL_RESSOURCES_H
+#define DIGITAL_RESSOURCES_H
+
 #include "media.h"
 #include<iostream>
 #include<fstream>
@@ -8,7 +11,7 @@ using namespace std;
 class digitalRessources : public Media{
     public : 
     //constructeur
-    digitalRessources(int _size, string _url, string _type){
+    digitalRessources(int id, string title, string author, string style,int _size, string _url, string _type): Media(id, title, author, style){
         size = _size;
         url = _url;
         type = _type;
@@ -21,6 +24,7 @@ class digitalRessources : public Media{
     int getSize();
     string getUrl();
     string getType();
+    void show();
 
 
     private : 
@@ -30,3 +34,5 @@ class digitalRessources : public Media{
     string type;
 
 };
+
+#endif

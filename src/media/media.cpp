@@ -1,18 +1,16 @@
-#include "media.h"
+#include "../../include/media/media.h"
 #include<iostream>
 #include<fstream>
 #include<string>
-
-from datetime import date, timedelta
+#include<chrono>
 
 void Media :: borrow(User _userBorrow){
-    if(available=1){
-        returnDate = date.today() + timedelta(weeks=3); //3 weeks delay
+    if(isAvailable==1){
     userBorrow = _userBorrow;
-    available = 0;
+    isAvailable = 0;
     }
     else 
-        print("ERREUR media déjà emprunté");
+        cout<<"ERROR media already borrowed"<<endl;
 }
 
 string Media :: getTitle(){
@@ -30,7 +28,7 @@ int Media :: getId(){
 
 
 bool Media :: available(){
-    return available;
+    return isAvailable;
 }
 
 
@@ -38,13 +36,9 @@ bool Media :: reserved(){
     return reserve;
 }
 
-string Media :: getReturnDate(){
-    return returnDate;
-}
-
 void Media :: reserveMedia(User _userReserve){
     if(reserved()==1){
-        print("ERREUR media déjà réservé");
+        cout<<"ERROR media already reserved"<<endl;
     }
     else {
         userReserve = _userReserve;
@@ -53,11 +47,17 @@ void Media :: reserveMedia(User _userReserve){
 }
 
 void Media :: returnMedia(){
-    if(reserved()= 1){
+    if(reserved()== 1){
         borrow(userReserve);
         reserve=0;
     }
     else {
-        available=1;
+        isAvailable=1;
     }
+}
+
+void Media :: show(){
+    cout<<"ID : "<<id<<endl;
+    cout<<"Title : "<<title<<endl;
+    cout<<"Author : "<<author<<endl;
 }

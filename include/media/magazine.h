@@ -1,3 +1,6 @@
+#ifndef MAGAZINE_H
+#define MAGAZINE_H
+
 #include "book.h"
 #include<iostream>
 #include<fstream>
@@ -5,21 +8,22 @@
 
 using namespace std;
 
-class magasine : public book{
+class Magasine : public Book{
     public : 
     //constructeur
-    magasine(int _nbArticles, string _articles[], string _editor){
+    Magasine(int id, string title, string author, string style,int _nbArticles, string _articles[], string _editor): Media(id, title, author, style){
         nbArticles = _nbArticles;
         articles = _articles;
         editor = _editor;
     }
     //deconstructeur
-    ~magasine(){
+    ~Magasine(){
     }
     //methodes
     int getNbArticles();
     string getArticles();
     string getEditor();
+    void show();
 
     private :
     //attributs
@@ -28,3 +32,5 @@ class magasine : public book{
     string editor;
 
 };
+
+#endif
