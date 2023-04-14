@@ -10,7 +10,7 @@ void AddCommand::execute(Mediatheque mediatheque, string type)
     cin >> mediaType;
 
     if(mediaType.compare("BOOK") == 0){
-        mediatheque.addMedia(*(new book()));
+        mediatheque.addMedia(*(new Book()));
     }
     else if(mediaType.compare("CD") == 0){
         mediatheque.addMedia(*(new CD()));
@@ -22,7 +22,7 @@ void AddCommand::execute(Mediatheque mediatheque, string type)
         mediatheque.addMedia(*(new DVD()));
     }
     else if(mediaType.compare("MAGASINE") == 0){
-        mediatheque.addMedia(*(new magasine()));
+        mediatheque.addMedia(*(new Magasine()));
     }
     else if(mediaType.compare("VHS") == 0){
         mediatheque.addMedia(*(new VHS()));

@@ -8,7 +8,7 @@ int Magasine :: getNbArticles(){
     return nbArticles;
 }
 
-string Magasine :: getArticles(){
+list<string> Magasine :: getArticles(){
     return articles;
 }
 
@@ -17,9 +17,13 @@ string Magasine :: getEditor(){
 }
 
 void Magasine::show(){
-    cout<<"...MAGAZINE..."<<id<<endl;
+    cout<<"...MAGAZINE..."<<getId()<<endl;
     Media::show();
     cout<<"Number of Articles : "<<nbArticles<<endl;
-    cout<<"Articles : "<<articles<<endl;
+    cout << "--- Articles ---" << endl;
+    for(string articles : articles){
+        cout<<"Articles : "<<articles<<endl;
+    }
+    cout << "---------" << endl;
     cout<<"Editor : "<<editor<<endl;
 }

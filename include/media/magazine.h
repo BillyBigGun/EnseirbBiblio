@@ -28,7 +28,7 @@ class Magasine : public Book{
     }
     //methodes
     int getNbArticles();
-    string getArticles();
+    list<string> getArticles();
     string getEditor();
     void show();
 
