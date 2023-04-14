@@ -15,7 +15,7 @@ class DeleteCommand : public Command{
     DeleteCommand():Command(){}
     ~DeleteCommand()=default;
 
-    void execute(Mediatheque mediatheque, string id);
+    void execute(Mediatheque* mediatheque, string id);
 
 };
 

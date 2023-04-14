@@ -2,6 +2,8 @@
 #include "commandManager.h"
 
 CommandManager::CommandManager(){
+    mediatheque = Mediatheque();
+
     commands["ADD"] = new AddCommand();
     commands["BYE"] = new ByeCommand();
     commands["CLEAR"] = new ClearCommand();
@@ -28,16 +30,16 @@ CommandManager::CommandManager(){
  */
 string* splitCommand(string command)
 {
+    
     string *split_command = new string[2]; //The return string
 
-    string command_type;
-    string command_param = NULL;
+    string command_type = "";
+    string command_param = "";
 
     unsigned int pos = 0;
     bool is_first_param = true;
 
-    
-    while(pos != command.length() - 1){
+    while(pos != command.length()){
         if(is_first_param)
         {
             if(command[pos] == ' ')
@@ -50,19 +52,18 @@ string* splitCommand(string command)
         }
         pos++;
     }
-
+    
     split_command[0] = command_type;
     split_command[1] = command_param;
 
-    cout << split_command[0] << "|" << split_command[1];
+    cout << "Command: "<< split_command[0] << "| Argument: " << split_command[1] << endl;
     return split_command;
 }
 
 void CommandManager::executeCommand(string command){
     //Split the command if needed
     string* split_command = splitCommand(command);
-    
-    commands[split_command[0]]->execute(mediatheque, split_command[1]);
+    commands[split_command[0]]->execute(&mediatheque, split_command[1]);
 
     delete split_command;
 }

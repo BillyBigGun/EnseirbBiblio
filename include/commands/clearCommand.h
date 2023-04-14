@@ -15,7 +15,7 @@ class ClearCommand : public Command{
     ClearCommand():Command(){}
     ~ClearCommand()=default;
 
-    void execute(Mediatheque mediatheque, string type);
+    void execute(Mediatheque* mediatheque, string type);
 
 };
 

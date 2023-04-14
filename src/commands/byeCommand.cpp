@@ -1,7 +1,7 @@
 
 #include "byeCommand.h"
 
-void ByeCommand::execute(Mediatheque mediatheque, string type)
+void ByeCommand::execute(Mediatheque* mediatheque, string type)
 {
     //mediatheque.reset();
 

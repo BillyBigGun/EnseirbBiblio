@@ -15,7 +15,7 @@ class ListCommand : public Command{
     ListCommand():Command(){}
     ~ListCommand()=default;
 
-    void execute(Mediatheque mediatheque, string type);
+    void execute(Mediatheque* mediatheque, string type);
 
 };
 

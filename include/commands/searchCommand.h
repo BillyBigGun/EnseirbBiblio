@@ -16,7 +16,7 @@ class SearchCommand : public Command{
     SearchCommand():Command(){}
     ~SearchCommand()=default;
 
-    void execute(Mediatheque mediatheque, string type);
+    void execute(Mediatheque* mediatheque, string type);
 
 };
 

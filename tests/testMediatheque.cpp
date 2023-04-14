@@ -15,7 +15,7 @@
 void testAddMedia(){
     string tracks[2] = {"track1","track2"}; 
     // Create a media
-    CD cd(1,2,tracks,"author");
+    CD cd= CD(1,2,tracks,"author");
 
     // Add the media to the mediatheque
     Mediatheque mediatheque;

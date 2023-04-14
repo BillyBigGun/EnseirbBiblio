@@ -1,7 +1,7 @@
 
 #include "clearCommand.h"
 
-void ClearCommand::execute(Mediatheque mediatheque, string type)
+void ClearCommand::execute(Mediatheque* mediatheque, string type)
 {
-    mediatheque.clearSearch();
+    mediatheque->clearSearch();
 }

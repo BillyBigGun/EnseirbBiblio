@@ -6,15 +6,15 @@
 - [x] Ajouter un constructeur a chaque media
 - [] Ajouter un destructeur a chaque media 
   > On peut peut-etre utiliser le destructeur par defaut dans le .h ( ex : ~Media()=default)
-- [] Ajout les #IFNDEF dans les .h
-- [] Faire la classe User
+- [x] Ajout les #IFNDEF dans les .h
+- [x] Faire la classe User
 - [] Faire le README
 - [] Faire des test unitaire pour les fonctions
   > Pour s'assurer que les fonctions ont le résultat attendu. Voir a ajouter l'extension TestMate dans Visual studio code pour faciliter les tests
 - [] Creer une base de donnee pour les medias (dans un fichier texte)
   > Verifier si il y en pas deja une qui viens avec le projet 
 
-- [] Creer des constructeur par defaut pour les media
+- [x] Creer des constructeur par defaut pour les media
   > Demandent a l'utilisateur d'entrer les valeurs pour creer le media.
 
 - [] Creer toutes les commandes

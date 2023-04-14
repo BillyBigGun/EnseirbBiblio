@@ -10,19 +10,11 @@ using namespace std;
 
 class Book : public Media{
     public : 
-    Book(){
-        
-    }
+    Book();
     //constructeur
-    Book(int id, string title, string author, string style, int _nbPages, string _date, string _collection, string _resume) : Media(id, title, author, style) {
-        nbPages = _nbPages;
-        date = _date;
-        collection = _collection;
-        resume = _resume;
-    }
+    Book(int id, string title, string author, string style, int _nbPages, string _date, string _collection, string _resume);
     //deconstructeur
-    ~Book(){
-    }
+    ~Book()=default;
 
     //methodes
     int getNbPages();

@@ -15,7 +15,7 @@ class LoadCommand : public Command{
     LoadCommand():Command(){}
     ~LoadCommand()=default;
 
-    void execute(Mediatheque mediatheque, string filename);
+    void execute(Mediatheque* mediatheque, string filename);
 
 };
 

@@ -9,19 +9,11 @@ using namespace std;
 
 class Media{
     public : 
-    Media(){}
+    Media();
     //constructeur
-    Media(int _id, string _title, string _author, string _style){
-        id = _id;
-        title = _title;
-        author = _author;
-        style = _style;
-        isAvailable = 1;
-        reserve = 0;
-        }
+    Media(int _id, string _title, string _author, string _style);
     //deconstructeur
-    ~Media(){
-    }
+    ~Media()=default;
 
     //methodes
     void borrow(int _userBorrowId);
