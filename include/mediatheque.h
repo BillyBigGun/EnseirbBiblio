@@ -17,7 +17,7 @@
 #include "magazine.h"
 #include "VHS.h"
 
-#include "user.h"
+// #include "user.h"
 
 
 #define Database_Path "DatabaseTxt/"
@@ -30,16 +30,16 @@ private:
     
     map<int, Media> mediaList; // The list of all media in the mediatheque
     map<int, Media> currentSearch;
-    map<int, User> userList;
-    User currentUser;
+    // map<int, User> userList;
+    // User currentUser;
 
 public:
     Mediatheque();
     Mediatheque(string fileName);
     ~Mediatheque();
 
-    User getUser(int id);
-    map<int, User> getUsers();
+    // User getUser(int id);
+    // map<int, User> getUsers();
 
     void addMedia(Media media);
 

@@ -4,14 +4,14 @@
 #include<string>
 
 
-int User::getId(){
-	return id;
-}
+// int User::getId(){
+// 	return id;
+// }
 
-string User::getName(){
-	return name;
-}
+// string User::getName(){
+// 	return name;
+// }
 
-string User :: getSurname(){
-	return surname;
-}
+// string User :: getSurname(){
+// 	return surname;
+// }

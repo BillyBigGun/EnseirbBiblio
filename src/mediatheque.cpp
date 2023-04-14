@@ -140,48 +140,48 @@ void Mediatheque::showSearch(){
 
 void createMediaFromString(string mediaString){
     // substring with delimiter 
-    vector<string> mediaInfo;
-    splitString(mediaString, ';', mediaInfo);
+    // vector<string> mediaInfo;
+    // splitString(mediaString, ';', mediaInfo);
 
-    // Depending on the type of media, create the right media
-    if (mediaInfo[0].compare("Book") == 0)
-    {
-        Book* book = new Book(mediaInfo[1], mediaInfo[2], mediaInfo[3], mediaInfo[4], mediaInfo[5], mediaInfo[6]);
-        Mediatheque::addMedia(book);
-    }
-    else if(mediaInfo[0].compare("CD")){
-        CD* cd = new CD(mediaInfo[1], mediaInfo[2], mediaInfo[3], mediaInfo[4], mediaInfo[5], mediaInfo[6]);
-        Mediatheque::addMedia(cd);
-    }
-    else if(mediaInfo[0].compare("DVD")){
-        DVD* dvd = new DVD(mediaInfo[1], mediaInfo[2], mediaInfo[3], mediaInfo[4], mediaInfo[5], mediaInfo[6]);
-        Mediatheque::addMedia(dvd);
-    }
-    else{
-        throw new runtime_error("The media type is not recognized.");
-    }
+    // // Depending on the type of media, create the right media
+    // if (mediaInfo[0].compare("Book") == 0)
+    // {
+    //     Book* book = new Book(mediaInfo[1], mediaInfo[2], mediaInfo[3], mediaInfo[4], mediaInfo[5], mediaInfo[6]);
+    //     Mediatheque::addMedia(book);
+    // }
+    // else if(mediaInfo[0].compare("CD")){
+    //     CD* cd = new CD(mediaInfo[1], mediaInfo[2], mediaInfo[3], mediaInfo[4], mediaInfo[5], mediaInfo[6]);
+    //     Mediatheque::addMedia(cd);
+    // }
+    // else if(mediaInfo[0].compare("DVD")){
+    //     DVD* dvd = new DVD(mediaInfo[1], mediaInfo[2], mediaInfo[3], mediaInfo[4], mediaInfo[5], mediaInfo[6]);
+    //     Mediatheque::addMedia(dvd);
+    // }
+    // else{
+    //     throw new runtime_error("The media type is not recognized.");
+    // }
 
 }
 
 void Mediatheque::loadMediatheque(string filename){
-    string filePath = Database_Path + filename;
-    int max_char = 1000;
-    char mediaChar[max_char];
-    char delimiter = '\n';
+    // string filePath = Database_Path + filename;
+    // int max_char = 1000;
+    // char mediaChar[max_char];
+    // char delimiter = '\n';
 
-    ifstream readFile(filePath);
-    if(readFile.good())
-    {
-        //Check if end of file
-        while(readFile.getline(mediaChar, max_char, delimiter) != istream().end()){
-            string mediaString = mediaChar.toString();
-            createMediaFromString(mediaString);
-        }
+    // ifstream readFile(filePath);
+    // if(readFile.good())
+    // {
+    //     //Check if end of file
+    //     while(readFile.getline(mediaChar, max_char, delimiter) != istream().end()){
+    //         string mediaString = mediaChar.toString();
+    //         createMediaFromString(mediaString);
+    //     }
         
-    }
-    else{
-        throw new runtime_error("The file could not be open.");
-    }
+    // }
+    // else{
+    //     throw new runtime_error("The file could not be open.");
+    // }
     
 
 } // Load the mediatheque from a filename
