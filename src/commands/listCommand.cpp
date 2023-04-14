@@ -1,6 +1,6 @@
 
 #include "listCommand.h"
 
-void execute(Mediatheque mediatheque, string type){
+void ListCommand::execute(Mediatheque mediatheque, string type){
     mediatheque.showSearch();
 }

@@ -1,6 +1,6 @@
 #include "showCommand.h"
 
-void execute(Mediatheque mediatheque, string id){
+void ShowCommand::execute(Mediatheque mediatheque, string id){
     int id_int = 0;
     //Convert param in ID
     try{

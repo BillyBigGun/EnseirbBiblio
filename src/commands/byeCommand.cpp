@@ -3,7 +3,7 @@
 
 void ByeCommand::execute(Mediatheque mediatheque, string type)
 {
-    mediatheque.reset();
+    //mediatheque.reset();
 
     cout << "Bye Bye " << endl; 
     

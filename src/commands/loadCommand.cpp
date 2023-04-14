@@ -1,5 +1,5 @@
 #include "loadCommand.h"
 
-void execute(Mediatheque mediatheque, string filename){
+void LoadCommand::execute(Mediatheque mediatheque, string filename){
     mediatheque.loadMediatheque(filename);
 }

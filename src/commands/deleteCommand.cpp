@@ -1,7 +1,7 @@
 
 #include "deleteCommand.h"
 
-void execute(Mediatheque mediatheque, string id){
+void DeleteCommand::execute(Mediatheque mediatheque, string id){
     int id_int = 0;
     //Convert param in ID
     try{

@@ -1,5 +1,5 @@
 #include "saveCommand.h"
 
-void execute(Mediatheque mediatheque, string filename){
+void SaveCommand::execute(Mediatheque mediatheque, string filename){
     mediatheque.saveMediatheque(filename);
 }

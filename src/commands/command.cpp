@@ -1,6 +1,6 @@
 
 #include "command.h"
 
-void Command::execute(Mediatheque Mediatheque, string param)
+void Command::execute(Mediatheque mediatheque, string type)
 {
 }
