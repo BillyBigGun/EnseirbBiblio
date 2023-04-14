@@ -12,8 +12,8 @@ string VHS :: getProduction(){
 }
 
 void VHS::show(){
-    cout<<"...VHS..."<<id<<endl;
+    cout<<"...VHS..."<<getId()<<endl;
     Media::show();
-    cout<<"Duration : "<<Duration<<endl;
+    cout<<"Duration : "<<duration<<endl;
     cout<<"Prodution Company : "<<production<<endl;
 }

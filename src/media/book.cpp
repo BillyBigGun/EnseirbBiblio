@@ -21,7 +21,7 @@ string Book ::  getResume(){
 }
 
 void Book::show(){
-    cout<<"...BOOK..."<<id<<endl;
+    cout<<"...BOOK..."<<getId()<<endl;
     Media::show();
     cout<<"Number of pages : "<<nbPages<<endl;
     cout<<"Year : "<<date<<endl;

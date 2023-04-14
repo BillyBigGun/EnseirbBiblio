@@ -16,7 +16,7 @@ string digitalRessources :: getType(){
 }
 
 void digitalRessources::show(){
-    cout<<"...DIGITAL RESSOURCES..."<<id<<endl;
+    cout<<"...DIGITAL RESSOURCES..."<<getId()<<endl;
     Media::show();
     cout<<"Type : "<<type<<endl;
     cout<<"Size : "<<size<<endl;
