@@ -28,7 +28,7 @@ CommandManager::CommandManager(){
  */
 string* splitCommand(string command)
 {
-    string split_command[2]; //The return string
+    string *split_command = new string[2]; //The return string
 
     string command_type;
     string command_param = NULL;
@@ -63,4 +63,6 @@ void CommandManager::executeCommand(string command){
     string* split_command = splitCommand(command);
     
     commands[split_command[0]]->execute(mediatheque, split_command[1]);
+
+    delete split_command;
 }

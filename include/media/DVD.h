@@ -11,6 +11,7 @@ using namespace std;
 class DVD : public Media{
     public : 
     //constructeur
+    DVD(){};
     DVD(int id, string title, string author, string style,int _duration, int _nbTrack, string _tracksTitle): Media(id, title, author, style){
         duration= _duration;
         nbTrack = _nbTrack;

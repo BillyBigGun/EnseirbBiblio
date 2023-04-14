@@ -12,7 +12,7 @@ int CD :: getNbTrack(){
     return nbTrack;
 }
 
-string CD :: getTracksTitle(){
+list<string> CD :: getTracksTitle(){
     return tracksTitle;
 }
 
@@ -21,10 +21,15 @@ string CD :: getProductionCompany(){
 }
 
 void CD::show(){
-    cout<<"...CD..."<<id<<endl;
+    cout<<"...CD..."<< getId() <<endl;
     Media::show();
     cout<<"Duration : "<<duration<<endl;
     cout<<"Number of Tracks : "<<nbTrack<<endl;
-    cout<<"Track's Title : "<<tracksTitle<<endl;
+    cout << "--- Tracks ---" << endl;
+    // Display all tracks
+    for(string tracksTitle : tracksTitle){
+        cout<<"Track's Title : " << tracksTitle<<endl;
+    }
+    cout << "---------" << endl;
     cout<<"Prodution Company : "<<productionCompany<<endl;
 }

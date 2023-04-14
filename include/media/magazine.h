@@ -12,6 +12,9 @@ using namespace std;
 class Magasine : public Book{
     public : 
     //constructeur
+    Magasine(){
+        
+    }
     Magasine(int id, string title, string author, string style,int _nbPages, string _date, string _collection, string _resume, int _nbArticles, string _articles[], string _editor): Book(id, title, author, style, _nbPages, _date, _collection, _resume){
         nbArticles = _nbArticles;
         for (int i = 0; i < _nbArticles; i++)
