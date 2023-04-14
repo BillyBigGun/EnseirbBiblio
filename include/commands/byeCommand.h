@@ -15,7 +15,7 @@ class ByeCommand : public Command{
     ByeCommand():Command(){}
     ~ByeCommand()=default;
 
-    void execute(Mediatheque mediatheque, string type);
+    //void execute(Mediatheque mediatheque, string type);
 
 };
 

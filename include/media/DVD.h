@@ -5,6 +5,7 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include<list>
 
 using namespace std;
 
@@ -12,7 +13,7 @@ class DVD : public Media{
     public : 
     //constructeur
     DVD(){};
-    DVD(int id, string title, string author, string style,int _duration, int _nbTrack, string _tracksTitle): Media(id, title, author, style){
+    DVD(int id, string title, string author, string style,int _duration, int _nbTrack, list<string> _tracksTitle): Media(id, title, author, style){
         duration= _duration;
         nbTrack = _nbTrack;
         tracksTitle = _tracksTitle;
@@ -23,14 +24,14 @@ class DVD : public Media{
     //methodes
     int getDuration();
     int getNbTrack();
-    string getTracksTitle();
+    list<string> getTracksTitle();
     void show();
 
     private : 
     //attributs
     int duration;
     int nbTrack;
-    string tracksTitle;
+    list<string> tracksTitle;
 };
 
 #endif

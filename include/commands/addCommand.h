@@ -23,7 +23,7 @@ class AddCommand : public Command{
     AddCommand():Command(){}
     ~AddCommand()=default;
 
-    void execute(Mediatheque mediatheque, string type);
+    //void execute(Mediatheque mediatheque, string type);
 
     // private:
     // string mediaTypesString [6]= {"BOOK", "CD", "DIGIGTAL_RESSOURCES", "DVD", "MAGASINE", "VHS"};

@@ -15,7 +15,7 @@ class ResetCommand : public Command{
     ResetCommand():Command(){}
     ~ResetCommand()=default;
 
-    void execute(Mediatheque mediatheque, string type);
+    //void execute(Mediatheque mediatheque, string type);
 
 };
 

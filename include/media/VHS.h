@@ -21,7 +21,7 @@ class VHS : public Media{
     }
     //methodes
     int getDuration();
-    int getProduction();
+    string getProduction();
     void show();
 
     private :

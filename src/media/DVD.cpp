@@ -11,14 +11,18 @@ int DVD :: getNbTrack(){
     return nbTrack;
 }
 
-string DVD :: getTracksTitle(){
+list<string> DVD :: getTracksTitle(){
     return tracksTitle;
 }
 
 void DVD::show(){
-    cout<<"...DVD..."<<id<<endl;
+    cout<<"...DVD..."<<getId()<<endl;
     Media::show();
     cout<<"Duration : "<<duration<<endl;
     cout<<"Number of Tracks : "<<nbTrack<<endl;
-    cout<<"Track's Title : "<<tracksTitle<<endl;
+    cout << "--- Tracks ---" << endl;
+    for(string tracksTitle : tracksTitle){
+        cout<<"Tracks : "<<tracksTitle<<endl;
+    }
+    cout << "---------" << endl;
 }
