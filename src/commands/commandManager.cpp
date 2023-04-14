@@ -33,14 +33,14 @@ string* splitCommand(string command)
     string command_type;
     string command_param = NULL;
 
-    int pos = 0;
+    unsigned int pos = 0;
     bool is_first_param = true;
 
     
     while(pos != command.length() - 1){
         if(is_first_param)
         {
-            if(command[pos] = ' ')
+            if(command[pos] == ' ')
                 is_first_param = false;
             else
                 command_type = command_type + command[pos];

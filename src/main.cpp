@@ -17,6 +17,8 @@ using namespace std;
 int main(int argc, char *argv[]){
 
     CommandManager commandManager;
-    
+    Book book = Book(1, "Le petit prince", "Antoine de Saint-Exupéry", "Sci-Fi", 200, "1999-10-12", "collection", "resume");
+
+    book.show();
     return 0;
 }
