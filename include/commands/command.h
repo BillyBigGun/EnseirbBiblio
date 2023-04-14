@@ -19,7 +19,7 @@ class Command{
     ~Command()=default;
 
     //methodes
-    virtual void execute(Mediatheque Mediatheque, string param=NULL) = 0;
+    void execute(Mediatheque Mediatheque, string param);
 
 }; 
 

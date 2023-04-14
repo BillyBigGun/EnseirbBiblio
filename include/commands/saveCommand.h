@@ -15,7 +15,7 @@ class SaveCommand : public Command{
     SaveCommand():Command(){}
     ~SaveCommand()=default;
 
-    //void execute(Mediatheque mediatheque, string filename);
+    void execute(Mediatheque mediatheque, string filename);
 
 };
 

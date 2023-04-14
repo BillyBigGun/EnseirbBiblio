@@ -1,57 +1,57 @@
-all:
-	g++ -I include -I include/commands -I include/media src/*.cpp src/media/*.cpp src/commands/*.cpp -o output
+# all:
+# 	g++ -I include -I include/commands -I include/media src/*.cpp src/media/*.cpp src/commands/*.cpp -o output
 
-# # CXX = g++
-# # CXXFLAGS = -c -Wall
-# # INCLUDES = -I include -I include/commands -I include/media
-# # SRC = main.cpp media.cpp CD.cpp DVD.cpp magazine.cpp VHS.cpp digitalRessources.cpp book.cpp mediatheque.cpp user.cpp command.cpp commandManager.cpp addCommand.cpp
-# # OBJ = $(SRC:.cpp=.o)
-# # EXEC = program
+CXX = g++
+CXXFLAGS = -c -Wall
+INCLUDES = -I include -I include/commands -I include/media
+SRC = src/main.cpp src/media/media.cpp src/media/CD.cpp src/media/DVD.cpp src/media/magazine.cpp src/media/VHS.cpp src/media/digitalRessources.cpp src/media/book.cpp src/mediatheque.cpp src/user.cpp src/commands/command.cpp src/commands/commandManager.cpp src/commands/addCommand.cpp src/commands/byeCommand.cpp src/commands/clearCommand.cpp src/commands/deleteCommand.cpp src/commands/listCommand.cpp src/commands/loadCommand.cpp src/commands/resetCommand.cpp src/commands/saveCommand.cpp src/commands/searchCommand.cpp src/commands/showCommand.cpp
+OBJ = $(SRC:.cpp=.o)
+EXEC = program
 
-# # all: $(EXEC)
+all: $(EXEC)
 
-# # $(EXEC): $(OBJ)
-# # 	$(CXX) $(INCLUDES) $(OBJ) -o $(EXEC)
+$(EXEC): $(OBJ)
+	$(CXX) $(OBJ) -o $(EXEC)
 
-# # %.o: %.cpp
-# # 	$(CXX) $(INCLUDES) -c $(CXXFLAGS) $< -o $@
+%.o: %.cpp
+	$(CXX) $(INCLUDES) -c $(CXXFLAGS) $< -o $@
 
-# # clean:
-# # 	rm -f $(OBJ) $(EXEC)
+clean:
+	rm -f $(OBJ) $(EXEC)
 
 
-# #########################################
-# # CC = g++
-# # CFLAGS = -c -Wall
-# # LDFLAGS = 
+########################################
+# CC = g++
+# CFLAGS = -c -Wall
+# LDFLAGS = 
 
-# # SRC_DIRS = src src/media src/commands
-# # INC_DIRS = include include/media include/commands
-# # OBJ_DIR = obj
-# # BIN_DIR = bin
+# SRC_DIRS = src src/media src/commands
+# INC_DIRS = include include/media include/commands
+# OBJ_DIR = obj
+# BIN_DIR = bin
 
-# # TARGET = $(BIN_DIR)/program
+# TARGET = $(BIN_DIR)/program
 
-# # SRCS = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.cpp))
-# # OBJS = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(notdir $(SRCS)))
-# # DEPS = $(foreach dir,$(INC_DIRS),$(wildcard $(dir)/*.h))
+# SRCS = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.cpp))
+# OBJS = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(notdir $(SRCS)))
+# DEPS = $(foreach dir,$(INC_DIRS),$(wildcard $(dir)/*.h))
 
-# # all: $(TARGET)
+# all: $(TARGET)
 
-# # $(TARGET): $(OBJS)
-# # 	$(CC) $(LDFLAGS) $^ -o $@
+# $(TARGET): $(OBJS)
+# 	$(CC) $(LDFLAGS) $^ -o $@
 
-# # $(OBJ_DIR)/%.o: $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.cpp))
-# # 	mkdir -p $(OBJ_DIR)
-# # 	$(CC) $(CFLAGS) -I $(dir $(lastword $(subst /, ,$(dir $@)))) $< -o $@
+# $(OBJ_DIR)/%.o: $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.cpp))
+# 	mkdir -p $(OBJ_DIR)
+# 	$(CC) $(CFLAGS) -I $(dir $(lastword $(subst /, ,$(dir $@)))) $< -o $@
 
-# # god:
-# # 	g++ -c -Wall -I $(INC_DIRS) $(SRCS) -o $(OBJS)
+# god:
+# 	g++ -c -Wall -I $(INC_DIRS) $(SRCS) -o $(OBJS)
 
-# # clean:
-# # 	rm -rf $(OBJ_DIR)/* $(TARGET)
+# clean:
+# 	rm -rf $(OBJ_DIR)/* $(TARGET)
 
-# # .PHONY: all clean
+# .PHONY: all clean
 
 
 

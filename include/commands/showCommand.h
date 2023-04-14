@@ -16,7 +16,7 @@ class ShowCommand : public Command{
     ShowCommand():Command(){}
     ~ShowCommand()=default;
 
-    //void execute(Mediatheque mediatheque, string id);
+    void execute(Mediatheque mediatheque, string id);
 
 };
 
