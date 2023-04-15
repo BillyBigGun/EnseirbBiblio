@@ -4,8 +4,11 @@
 CXX = g++
 CXXFLAGS = -c -Wall
 INCLUDES = -I include -I include/commands -I include/media
-SRC = src/main.cpp src/media/media.cpp src/media/CD.cpp src/media/DVD.cpp src/media/magazine.cpp src/media/VHS.cpp src/media/digitalRessources.cpp src/media/book.cpp src/mediatheque.cpp src/user.cpp src/commands/command.cpp src/commands/commandManager.cpp src/commands/addCommand.cpp src/commands/byeCommand.cpp src/commands/clearCommand.cpp src/commands/deleteCommand.cpp src/commands/listCommand.cpp src/commands/loadCommand.cpp src/commands/resetCommand.cpp src/commands/saveCommand.cpp src/commands/searchCommand.cpp src/commands/showCommand.cpp
-OBJ = $(SRC:.cpp=.o)
+#FILE_SRC = main.cpp media/media.cpp media/CD.cpp media/DVD.cpp media/magazine.cpp media/VHS.cpp media/digitalRessources.cpp media/book.cpp mediatheque.cpp user.cpp commands/command.cpp commands/commandManager.cpp commands/addCommand.cpp commands/byeCommand.cpp commands/clearCommand.cpp commands/deleteCommand.cpp commands/listCommand.cpp commands/loadCommand.cpp commands/resetCommand.cpp commands/saveCommand.cpp commands/searchCommand.cpp commands/showCommand.cpp
+SRCDIRS = src src/media src/commands
+SRC = $(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.cpp))
+OBJDIR = obj
+OBJ = $(addprefix $(OBJDIR)/, $(SRC:src/%.cpp=%.o))
 EXEC = program
 
 all: $(EXEC)
@@ -13,7 +16,7 @@ all: $(EXEC)
 $(EXEC): $(OBJ)
 	$(CXX) $(OBJ) -o $(EXEC)
 
-%.o: %.cpp
+$(OBJDIR)/%.o: src/%.cpp
 	$(CXX) $(INCLUDES) -c $(CXXFLAGS) $< -o $@
 
 clean:
@@ -28,7 +31,7 @@ clean:
 # SRC_DIRS = src src/media src/commands
 # INC_DIRS = include include/media include/commands
 # OBJ_DIR = obj
-# BIN_DIR = bin
+# BIN_DIR = obj
 
 # TARGET = $(BIN_DIR)/program
 
