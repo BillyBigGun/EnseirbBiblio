@@ -30,26 +30,27 @@ Mediatheque::Mediatheque(string filename){
 Mediatheque::~Mediatheque() = default;
 
 
-void Mediatheque::addMedia(Media media){
-    int id = media.getId();
-
+void Mediatheque::addMedia(Media* media){
+    cout << "Adding media to the mediatheque" << endl;
+    int id = media->getId();
+    
     mediaList.insert(make_pair(id, media));
 }
 
-void Mediatheque::deleteMedia(Media media){
-    int id = media.getId();
+void Mediatheque::deleteMedia(Media* media){
+    int id = media->getId();
 
     mediaList.erase(id);
 }
 
-map<int, Media> Mediatheque::getMedias(){
+map<int, Media*> Mediatheque::getMedias(){
     return mediaList;
 }
 
 
-Media Mediatheque::findById(int id){
+Media* Mediatheque::findById(int id){
     
-    map<int, Media>::iterator media_ite = mediaList.find(id); 
+    map<int, Media*>::iterator media_ite = mediaList.find(id); 
     
     //If the media exist
     if(media_ite != mediaList.end()){
@@ -61,35 +62,35 @@ Media Mediatheque::findById(int id){
     }     
 
 }
-map<int, Media> Mediatheque::findByTitle(string title){
+map<int, Media*> Mediatheque::findByTitle(string title){
     
-    map<int, Media> newSearch;
+    map<int, Media*> newSearch;
     // Compare the titles and add to a map is they match
     //for (auto i : mediaList)
-    for (map<int, Media>::iterator i = currentSearch.begin(); i != currentSearch.end(); ++i){
+    for (map<int, Media*>::iterator i = currentSearch.begin(); i != currentSearch.end(); ++i){
         // Second == media
-        Media currentMedia = i->second;
-        string mediaTitle = currentMedia.getTitle();
+        Media* currentMedia = i->second;
+        string mediaTitle = currentMedia->getTitle();
         // Find if a substring in the title correspond to the title in parameter
         // Add it to the new search
         if(mediaTitle.find(title) != string::npos){
-            newSearch.insert({currentMedia.getId(), currentMedia});
+            newSearch.insert({currentMedia->getId(), currentMedia});
         }
     }
 
     return newSearch;
 }
-map<int, Media> Mediatheque::findByAuthor(string author){
+map<int, Media*> Mediatheque::findByAuthor(string author){
 
-    map<int, Media> newSearch;
+    map<int, Media*> newSearch;
     for (auto media_ite : currentSearch){
         // Second == media
-        Media currentMedia = media_ite.second;
-        string mediaAuthor = currentMedia.getAuthor();
+        Media* currentMedia = media_ite.second;
+        string mediaAuthor = currentMedia->getAuthor();
         // Find if a substring in the title correspond to the title in parameter
         // Add it to the new search
         if(mediaAuthor.find(author) != string::npos){
-            newSearch.insert({currentMedia.getId(), currentMedia});
+            newSearch.insert({currentMedia->getId(), currentMedia});
         }
     }
 
@@ -123,8 +124,8 @@ void Mediatheque::clearSearch(){
 }
 void Mediatheque::showMedia(int id){
     try{
-        Media media = findById(id);
-        media.show();
+        Media* media = findById(id);
+        media->show();
         // TODO Add the function to display the media in each media
     }
     catch(exception e){printf("Media Not found. Cannot print it's value.");}
@@ -134,7 +135,7 @@ void Mediatheque::showMedia(int id){
 
 void Mediatheque::showSearch(){
     for(auto x : currentSearch){
-        x.second.show(); 
+        x.second->show(); 
     }
 }
 
@@ -194,8 +195,8 @@ void Mediatheque::saveMediatheque(string filename){
     
     if(writeFile.good())
     {
-        for (map<int, Media>::iterator i = mediaList.begin(); i != mediaList.end(); ++i){
-            Media current_media = i->second;
+        for (map<int, Media*>::iterator i = mediaList.begin(); i != mediaList.end(); ++i){
+            Media* current_media = i->second;
             
             // TODO fonction toString()
             // TODO fonction fromString()
