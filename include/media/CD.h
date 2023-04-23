@@ -12,7 +12,7 @@ using namespace std;
 class CD : public Media{
     public : 
     //constructeur
-    CD(){}; //constructeur par defaut
+    CD(); //constructeur par defaut
     
     CD(int id, string title, string author, string style, int _nbPages, string _date,int _duration, int _nbTrack, string _tracksTitle[], string _productionCompany) : Media(id, title, author, style){
         duration = _duration;
@@ -24,8 +24,7 @@ class CD : public Media{
         productionCompany = _productionCompany;
     }
     //deconstructeur
-    ~CD(){
-    }
+    ~CD() override=default;
 
     //methodes
     int getDuration();

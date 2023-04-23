@@ -3,19 +3,28 @@
 #include<fstream>
 #include<string>
 
-int digitalRessources :: getSize(){
+DigitalRessources :: DigitalRessources() : Media(){
+    cout << "Type : ";
+    cin >> type;
+    cout << "Size : ";
+    cin >> size;
+    cout << "URL : ";
+    cin >> url;
+}
+
+int DigitalRessources :: getSize(){
     return size;
 }
 
-string digitalRessources :: getUrl(){
+string DigitalRessources :: getUrl(){
     return url;
 }
 
-string digitalRessources :: getType(){
+string DigitalRessources :: getType(){
     return type;
 }
 
-void digitalRessources::show(){
+void DigitalRessources::show(){
     cout<<"...DIGITAL RESSOURCES..."<<getId()<<endl;
     Media::show();
     cout<<"Type : "<<type<<endl;

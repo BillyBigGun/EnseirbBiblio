@@ -41,6 +41,10 @@ string Media :: getAuthor(){
     return author;
 }
 
+string Media :: getStyle(){
+    return style;
+}
+
 int Media :: getId(){
     return id;
 }
@@ -79,4 +83,5 @@ void Media :: show(){
     cout<<"ID : "<<id<<endl;
     cout<<"Title : "<<title<<endl;
     cout<<"Author : "<<author<<endl;
+    cout<<"Style : "<<style<<endl;
 }

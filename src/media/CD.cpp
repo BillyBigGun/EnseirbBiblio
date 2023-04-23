@@ -3,6 +3,21 @@
 #include<fstream>
 #include<string>
 
+CD :: CD() : Media(){
+    cout << "Duration : ";
+    cin >> duration;
+    cout << "Number of Tracks : ";
+    cin >> nbTrack;
+    cout << "Production Company : ";
+    cin >> productionCompany;
+    cout << "Tracks : " << endl;
+    for(int i = 0; i < nbTrack; i++){
+        string trackTitle;
+        cout << "Track " << i+1 << " : ";
+        cin >> trackTitle;
+        tracksTitle.push_back(trackTitle);
+    }
+}
 
 int CD :: getDuration(){
     return duration;

@@ -35,12 +35,18 @@ void Mediatheque::addMedia(Media* media){
     int id = media->getId();
     
     mediaList.insert(make_pair(id, media));
+
+    clearSearch();
 }
 
 void Mediatheque::deleteMedia(Media* media){
     int id = media->getId();
 
+    delete media;
+
     mediaList.erase(id);
+
+    clearSearch();
 }
 
 map<int, Media*> Mediatheque::getMedias(){
@@ -97,30 +103,53 @@ map<int, Media*> Mediatheque::findByAuthor(string author){
     return newSearch;
 } 
 
-// TODO Get only the media that have a style
-// map<int, Media> Mediatheque::findByStyle(string style){
+map<int, Media*> Mediatheque::findByStyle(string style){
 
-//     // map<int, Media> newSearch;
-//     // for (auto media_ite : currentSearch){
-//     //     // Second == media
-//     //     Media currentMedia = media_ite.second;
-//     //     string mediaStyle = currentMedia.getStyle();
-//     //     // Find if a substring in the title correspond to the title in parameter
-//     //     // Add it to the new search
-//     //     if(mediaTitle.find(style) != string::npos){
-//     //         newSearch.insert({currentMedia.getId(), currentMedia});
-//     //     }
-//     // }
+    map<int, Media*> newSearch;
+    for (auto media_ite : currentSearch){
+        // Second == media
+        Media* currentMedia = media_ite.second;
+        string mediaStyle = currentMedia->getStyle();
+        // Find if a substring in the title correspond to the title in parameter
+        // Add it to the new search
+        if(mediaStyle.find(style) != string::npos){
+            newSearch.insert({currentMedia->getId(), currentMedia});
+        }
+    }
 
-//     // return newSearch;
-// }
+    return newSearch;
+}
 
-// map<int, Media> Mediatheque::findByTrack(string track){
+map<int, Media*> Mediatheque::search(string chaine){
 
-// }
+    map<int, Media*> newSearch;
+
+    for(auto media_ite : currentSearch){
+        // Second == media
+        Media* currentMedia = media_ite.second;
+        string mediaAuthor = currentMedia->getAuthor();
+        string mediaStyle = currentMedia->getStyle();
+        string mediaTitle = currentMedia->getTitle();
+       
+        // Find if a substring in the title, the author or the style correspond to the title in parameter
+        if(mediaAuthor.find(chaine) != string::npos || mediaStyle.find(chaine) != string::npos || mediaTitle.find(chaine) != string::npos){
+            newSearch.insert({currentMedia->getId(), currentMedia});
+        }
+    }
+
+    currentSearch = newSearch;
+
+    showSearch();
+    return newSearch;
+}
 
 void Mediatheque::clearSearch(){
-    currentSearch = mediaList;
+    currentSearch.clear();
+    for(auto x : mediaList)
+    {
+        currentSearch.insert(x);
+    }
+    
 }
 void Mediatheque::showMedia(int id){
     try{
@@ -136,6 +165,7 @@ void Mediatheque::showMedia(int id){
 void Mediatheque::showSearch(){
     for(auto x : currentSearch){
         x.second->show(); 
+        cout << endl;
     }
 }
 

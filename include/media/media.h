@@ -13,18 +13,19 @@ class Media{
     //constructeur
     Media(int _id, string _title, string _author, string _style);
     //deconstructeur
-    ~Media()=default;
+    virtual ~Media()=default;
 
     //methodes
     void borrow(int _userBorrowId);
     string getTitle();
     string getAuthor();
+    string getStyle();
     int getId();
     bool available();
     bool reserved();
     void reserveMedia(int _userReserveId);
     void returnMedia();
-    void show();
+    virtual void show();
 
     private : 
     //attributs

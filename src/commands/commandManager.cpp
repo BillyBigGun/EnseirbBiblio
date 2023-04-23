@@ -56,7 +56,7 @@ string* splitCommand(string command)
     split_command[0] = command_type;
     split_command[1] = command_param;
 
-    cout << "Command: "<< split_command[0] << " | Argument: " << split_command[1] << endl;
+    cout << endl << "[Command: "<< split_command[0] << " | Argument: " << split_command[1] << "]" << endl << endl;
     return split_command;
 }
 
@@ -67,5 +67,9 @@ void CommandManager::executeCommand(string command){
 
     delete[] split_command;
     
-    cout << "Command executed" << endl;
+    cout << "[Command executed]" << endl;
+}
+
+void CommandManager::addMedia(Media* media){
+    mediatheque.addMedia(media);
 }

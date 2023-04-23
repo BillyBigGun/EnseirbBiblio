@@ -14,14 +14,14 @@ class Book : public Media{
     //constructeur
     Book(int id, string title, string author, string style, int _nbPages, string _date, string _collection, string _resume);
     //deconstructeur
-    ~Book()=default;
+    ~Book() override=default;
 
     //methodes
     int getNbPages();
     string getDate();
     string getCollection();
     string getResume();
-    void show();
+    void show() override;
 
     private:
     //attributs

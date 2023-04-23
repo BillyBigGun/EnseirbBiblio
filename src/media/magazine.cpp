@@ -3,6 +3,19 @@
 #include<fstream>
 #include<string>
 
+Magasine::Magasine() : Media(){
+    cout << "Number of Articles : ";
+    cin >> nbArticles;
+    cout << "Articles : " << endl;
+    for(int i = 0; i < nbArticles; i++){
+        string article;
+        cout << "Article " << i+1 << " : ";
+        cin >> article;
+        articles.push_back(article);
+    }
+    cout << "Editor : ";
+    cin >> editor;
+}
 
 int Magasine :: getNbArticles(){
     return nbArticles;

@@ -3,6 +3,20 @@
 #include<fstream>
 #include<string>
 
+DVD::DVD() : Media(){
+    cout << "Duration : ";
+    cin >> duration;
+    cout << "Number of Tracks : ";
+    cin >> nbTrack;
+    cout << "Tracks : " << endl;
+    for(int i = 0; i < nbTrack; i++){
+        string trackTitle;
+        cout << "Track " << i+1 << " : ";
+        cin >> trackTitle;
+        tracksTitle.push_back(trackTitle);
+    }
+}
+
 int DVD :: getDuration(){
     return duration;
 }

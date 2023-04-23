@@ -74,14 +74,13 @@ public:
      */
     map<int, Media*> findByStyle(string style);
 
-   /**
-    * @brief Search media in the mediatheque that contain this track
-    * 
-    * @param track The name of the track for the search
-    * @param currentSearch The current search
-    * @return map<int, Media> The map of all the media that contain that track
-    */
-    map<int, Media*> findByTrack(string track);
+    /**
+     * @brief Search media in the mediatheque that contain this keyword (Title, author, style)
+     * 
+     * @param keyword The keyword for the search
+     * @return map<int, Media*> The map of all the media that contain this keyword
+     */
+    map<int, Media*> search(string chaine);
 
     /**
      * @brief Reset the search to be able to search from every media in the mediatheque. 

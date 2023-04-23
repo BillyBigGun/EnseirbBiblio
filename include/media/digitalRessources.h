@@ -8,26 +8,23 @@
 
 using namespace std;
 
-class digitalRessources : public Media{
+class DigitalRessources : public Media{
     public : 
-    digitalRessources(){
-        
-    }
+    DigitalRessources();
     //constructeur
-    digitalRessources(int id, string title, string author, string style,int _size, string _url, string _type): Media(id, title, author, style){
+    DigitalRessources(int id, string title, string author, string style,int _size, string _url, string _type): Media(id, title, author, style){
         size = _size;
         url = _url;
         type = _type;
     }
     //deconstructeur
-    ~digitalRessources(){
-    }
+    ~DigitalRessources() override=default;
 
     //methodes
     int getSize();
     string getUrl();
     string getType();
-    void show();
+    void show() override;
 
 
     private : 

@@ -3,6 +3,13 @@
 #include<fstream>
 #include<string>
 
+VHS::VHS() : Media(){
+    cout << "Duration : ";
+    cin >> duration;
+    cout << "Production Company : ";
+    cin >> production;
+}
+
 int VHS :: getDuration(){
     return duration;
 }

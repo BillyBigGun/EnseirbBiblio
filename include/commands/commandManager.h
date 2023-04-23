@@ -34,6 +34,8 @@ public:
     ~CommandManager()=default;
     
     void executeCommand(string command);
+
+    void addMedia(Media* media);
 };
 
 
