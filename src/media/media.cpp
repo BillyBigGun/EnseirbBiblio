@@ -25,19 +25,20 @@ Media::Media(){
 
 Media::Media(string* parameters)
 {
-    int taille = parameters.size();
+    int taille = parameters->size();
     int x=1;
     while(x<5 or taille!=0){
-        int pos = parameters.find(';');
+        int pos = parameters->find(';');
+        
         switch(x)
         {
-            case 1: id = atoi(parameters.substr(0, pos));
-            case 2: title = parameters.substr(0, pos);
-            case 3: author = parameters.substr(0, pos);
-            case 4: style = parameters.substr(0, pos);
+            case 1: id = stoi(parameters->substr(0, pos));
+            case 2: title = parameters->substr(0, pos);
+            case 3: author = parameters->substr(0, pos);
+            case 4: style = parameters->substr(0, pos);
         }
         x++;
-        parameters = parameters.substr(pos+1, taille-(pos+1));
+        *parameters = parameters->substr(pos+1, taille-(pos+1));
     }
 }
 

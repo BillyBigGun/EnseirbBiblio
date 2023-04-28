@@ -14,7 +14,9 @@ class CD : public Media{
     //constructeur
     CD(); //constructeur par defaut
     
-    CD(int id, string title, string author, string style, string _date,int _duration, int _nbTrack, string _tracksTitle[], string _productionCompany) : Media(id, title, author, style);
+    CD(int id, string title, string author, string style, string _date,int _duration, int _nbTrack, string _tracksTitle[], string _productionCompany);
+    CD(string parameters);
+    
     //deconstructeur
     ~CD() override=default;
 

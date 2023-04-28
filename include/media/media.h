@@ -12,7 +12,7 @@ class Media{
     Media();
     //constructeur
     Media(int _id, string _title, string _author, string _style);
-    Media::Media(string param);
+    Media(string* param);
     //deconstructeur
     virtual ~Media()=default;
 

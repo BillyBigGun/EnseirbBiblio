@@ -29,22 +29,29 @@ CD::CD(int id, string title, string author, string style, string _date,int _dura
     productionCompany = _productionCompany;
 }
 
-CD::CD(string parameters)
+CD::CD(string parameters):Media(&parameters)
 {
-    Media::Media(&parameters);
+    int taille = parameters.size();
+    int x=1;
     while(x<5 or taille!=0){
         int pos = parameters.find(';');
         switch(x)
         {
-            case 1: duration = parameters.substr(0, pos);
-            case 2: nbTrack = parameters.substr(0, pos);
+            case 1: duration = stoi(parameters.substr(0, pos));
+            case 2: nbTrack = stoi(parameters.substr(0, pos));
             case 3: productionCompany = parameters.substr(0, pos);
-            case 4: tracksTitle = parameters.substr(0, pos);
+            case 4: 
+                for (int i = 0; i < nbTrack; i++)
+                {
+                    pos = parameters.find(';');
+                    tracksTitle.push_back(parameters.substr(0, pos));
+                    parameters = parameters.substr(pos+1, taille-(pos+1));
+                }
+                break;
         }
         x++;
         parameters = parameters.substr(pos+1, taille-(pos+1));
     }
-    return parameters;
 }
 
 int CD :: getDuration(){
@@ -80,5 +87,10 @@ void CD::show(){
 string CD::toString(){
     string toString = "CD;";
     toString += Media::toString();
-    return toString+";"+to_string(duration)+";"+to_string(nbTrack)+";"+tracksTitle+";"+productionCompany;
+    toString = toString+";"+to_string(duration)+";"+to_string(nbTrack)+";";
+    
+    for(string tracksTitle : tracksTitle){
+        toString = toString+tracksTitle+";";
+    }
+    toString += productionCompany;
 }
