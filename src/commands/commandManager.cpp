@@ -8,6 +8,7 @@ CommandManager::CommandManager(){
     commands["BYE"] = new ByeCommand();
     commands["CLEAR"] = new ClearCommand();
     commands["DELETE"] = new DeleteCommand();
+    commands["HELP"] = new HelpCommand();
     commands["LIST"] = new ListCommand();
     commands["LOAD"] = new LoadCommand();
     commands["RESET"] = new ResetCommand();

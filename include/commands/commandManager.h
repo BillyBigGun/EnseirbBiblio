@@ -12,6 +12,7 @@
 #include "byeCommand.h"
 #include "clearCommand.h"
 #include "deleteCommand.h"
+#include "helpCommand.h"
 #include "listCommand.h"
 #include "loadCommand.h"
 #include "resetCommand.h"
@@ -26,6 +27,8 @@ class CommandManager{
 
 private:
     Mediatheque mediatheque;
+    
+protected:
     map<string, Command*> commands;
 
 public:
@@ -36,6 +39,7 @@ public:
     void executeCommand(string command);
 
     void addMedia(Media* media);
+    
 };
 
 

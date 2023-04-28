@@ -3,9 +3,11 @@
 
 void ByeCommand::execute(Mediatheque* mediatheque, string type)
 {
-    //mediatheque.reset();
+    mediatheque->reset();
 
     cout << "Bye Bye " << endl; 
     
-    throw runtime_error("BYE command");
+    exit(0);
+
+    //throw runtime_error("BYE command");
 }

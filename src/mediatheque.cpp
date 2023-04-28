@@ -49,6 +49,14 @@ void Mediatheque::deleteMedia(Media* media){
     clearSearch();
 }
 
+void Mediatheque::reset(){
+    for (auto media_ite : mediaList){
+        delete media_ite.second;
+    }
+    mediaList.clear();
+    currentSearch.clear();
+}
+
 map<int, Media*> Mediatheque::getMedias(){
     return mediaList;
 }
@@ -228,7 +236,7 @@ void Mediatheque::saveMediatheque(string filename){
         for (map<int, Media*>::iterator i = mediaList.begin(); i != mediaList.end(); ++i){
             Media* current_media = i->second;
 
-            //writeFile << current_media.toString() << endl;
+            writeFile << current_media->toString() << endl;
         }
 
         writeFile.close();
