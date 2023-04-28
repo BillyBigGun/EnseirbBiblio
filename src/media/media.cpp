@@ -23,6 +23,25 @@ Media::Media(){
         reserve = 0;
 }
 
+Media::Media(string parameters)
+{
+    int taille = parameters.size();
+    x=1;
+    while(x<5 or taille!=0){
+        int pos = parameters.find(';');
+        switch(x)
+        {
+            case 1: id = parameters.substr(0, pos);
+            case 2: title = parameters.substr(0, pos);
+            case 3: author = parameters.substr(0, pos);
+            case 4: style = parameters.substr(0, pos);
+        }
+        x++;
+        parameters = parameters.substr(pos+1, taille-(pos+1));
+    }
+    return parameters;
+}
+
 void Media :: borrow(int _userBorrowId){
     if(isAvailable==1){
     userBorrowId = _userBorrowId;
@@ -87,5 +106,5 @@ void Media :: show(){
 }
 
 string Media::toString(){
-    return to_string(getId())+title+author+style;
+    return to_string(getId())+title+";"+author+";"+style;
 }

@@ -19,6 +19,24 @@ CD :: CD() : Media(){
     }
 }
 
+CD::CD(string parameters)
+{
+    parameters = Media::Media(parameters);
+    while(x<5 or taille!=0){
+        int pos = parameters.find(';');
+        switch(x)
+        {
+            case 1: duration = parameters.substr(0, pos);
+            case 2: nbTrack = parameters.substr(0, pos);
+            case 3: productionCompany = parameters.substr(0, pos);
+            case 4: trackTitle = parameters.substr(0, pos);
+        }
+        x++;
+        parameters = parameters.substr(pos+1, taille-(pos+1));
+    }
+    return parameters;
+}
+
 int CD :: getDuration(){
     return duration;
 }
@@ -47,4 +65,10 @@ void CD::show(){
     }
     cout << "---------" << endl;
     cout<<"Prodution Company : "<<productionCompany<<endl;
+}
+
+string CD::toString(){
+    string toString = 'CD;';
+    toString += Media.toString();
+    return toString+";"+duration+";"+nbTrack+";"+tracksTitle+";"+productionCompany;
 }
