@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-<mxfile host="app.diagrams.net" modified="2023-04-14T14:51:11.152Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="zJ0cliZSK1KKYerPV2bi" version="21.1.4" type="device" pages="2">
-  <diagram name="UML" id="WBxY3FCirnX2FTF7sig9">
-    <mxGraphModel dx="1235" dy="1746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
-=======
 <mxfile host="app.diagrams.net" modified="2023-04-17T23:45:47.698Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Safari/605.1.15" etag="abMSMJ0hlTKOQe_yJTzO" version="21.1.4" type="device" pages="2">
   <diagram name="UML" id="WBxY3FCirnX2FTF7sig9">
     <mxGraphModel dx="1287" dy="2033" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
->>>>>>> c0169ab (ULM)
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
