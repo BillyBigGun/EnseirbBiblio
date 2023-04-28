@@ -14,14 +14,7 @@ class Magasine : public Book{
     //constructeur
     Magasine();
 
-    Magasine(int id, string title, string author, string style,int _nbPages, string _date, string _collection, string _resume, int _nbArticles, string _articles[], string _editor): Book(id, title, author, style, _nbPages, _date, _collection, _resume){
-        nbArticles = _nbArticles;
-        for (int i = 0; i < _nbArticles; i++)
-        {
-            articles.push_back(_articles[i]);
-        }
-        editor = _editor;
-    }
+    Magasine(int id, string title, string author, string style,int _nbPages, string _date, string _collection, string _resume, int _nbArticles, string _articles[], string _editor): Book(id, title, author, style, _nbPages, _date, _collection, _resume);
     //deconstructeur
     ~Magasine()override=default;
 

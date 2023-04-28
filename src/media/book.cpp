@@ -66,6 +66,6 @@ void Book::show(){
 
 string Book::toString(){
     string toString = 'book;';
-    toString += Media.toString();
-    return toString+";"+titnbPages+";"+date+";"+collection+";"+resume;
+    toString += Media::toString();
+    return toString+";"+to_string(nbPages)+";"+date+";"+collection+";"+resume;
 }

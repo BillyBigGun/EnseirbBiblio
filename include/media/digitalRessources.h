@@ -12,11 +12,7 @@ class DigitalRessources : public Media{
     public : 
     DigitalRessources();
     //constructeur
-    DigitalRessources(int id, string title, string author, string style,int _size, string _url, string _type): Media(id, title, author, style){
-        size = _size;
-        url = _url;
-        type = _type;
-    }
+    DigitalRessources(int id, string title, string author, string style,int _size, string _url, string _type): Media(id, title, author, style);
     //deconstructeur
     ~DigitalRessources() override=default;
 

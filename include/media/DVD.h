@@ -13,14 +13,7 @@ class DVD : public Media{
     public : 
     //constructeur
     DVD();
-    DVD(int id, string title, string author, string style,int _duration, int _nbTrack, string _tracksTitle[]): Media(id, title, author, style){
-        duration= _duration;
-        nbTrack = _nbTrack;
-        for (int i = 0; i < _nbTrack; i++)
-        {
-            tracksTitle.push_back(_tracksTitle[i]);
-        }
-    }
+    DVD(int id, string title, string author, string style,int _duration, int _nbTrack, string _tracksTitle[]): Media(id, title, author, style);
     //deconstructeur
     ~DVD() override=default;
     //methodes

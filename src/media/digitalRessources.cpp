@@ -12,6 +12,12 @@ DigitalRessources :: DigitalRessources() : Media(){
     cin >> url;
 }
 
+DigitalRessources::DigitalRessources(int id, string title, string author, string style,int _size, string _url, string _type): Media(id, title, author, style){
+    size = _size;
+    url = _url;
+    type = _type;
+}
+
 DigitalRessources::DigitalRessources(string parameters)
 {
     parameters = Media::Media(parameters);
@@ -51,6 +57,6 @@ void DigitalRessources::show(){
 
 string DigitalRessources::toString(){
     string toString = 'DigitalRessources;';
-    toString += Media.toString();
-    return toString+";"+type+";"+size+";"+url;
+    toString += Media::toString();
+    return toString+";"+type+";"+to_string(size)+";"+url;
 }

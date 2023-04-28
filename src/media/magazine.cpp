@@ -17,6 +17,15 @@ Magasine::Magasine() : Media(){
     cin >> editor;
 }
 
+Magasine::Magasine(int id, string title, string author, string style,int _nbPages, string _date, string _collection, string _resume, int _nbArticles, string _articles[], string _editor): Book(id, title, author, style, _nbPages, _date, _collection, _resume){
+    nbArticles = _nbArticles;
+    for (int i = 0; i < _nbArticles; i++)
+    {
+        articles.push_back(_articles[i]);
+    }
+    editor = _editor;
+}
+
 Magasine::Magasine(string parameters)
 {
     parameters = Book::Book(parameters);
@@ -60,6 +69,6 @@ void Magasine::show(){
 
 string Magasine::toString(){
     string toString = 'Magasine;';
-    toString += Book.toString()
-    return toString+";"+nbArticles+";"+articles+";"+editor;
+    toString += Book::toString()
+    return toString+";"+to_string(nbArticles)+";"+articles+";"+editor;
 }

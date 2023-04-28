@@ -12,10 +12,7 @@ class VHS : public Media{
     public : 
     //constructeur
     VHS();
-    VHS(int id, string title, string author, string style,int _duration, string _production): Media(id, title, author, style){
-        duration = _duration;
-        production = _production;
-    }
+    VHS(int id, string title, string author, string style,int _duration, string _production): Media(id, title, author, style);
     //deconstructeur
     ~VHS()override=default;
     //methodes

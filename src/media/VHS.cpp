@@ -10,6 +10,11 @@ VHS::VHS() : Media(){
     cin >> production;
 }
 
+VHS::VHS(int id, string title, string author, string style,int _duration, string _production): Media(id, title, author, style){
+    duration = _duration;
+    production = _production;
+}
+
 VHS::VHS(string parameters)
 {
     parameters = Media::Media(parameters);
@@ -43,5 +48,6 @@ void VHS::show(){
 
 string VHS::toString(){
     string toString = 'VHS;';
-    return toString+";"+duration+";"+production;
+    toString += Media::toString();
+    return toString+";"+to_string(duration)+";"+production;
 }

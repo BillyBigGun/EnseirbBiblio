@@ -19,9 +19,19 @@ CD :: CD() : Media(){
     }
 }
 
+CD::CD(int id, string title, string author, string style, string _date,int _duration, int _nbTrack, string _tracksTitle[], string _productionCompany) : Media(id, title, author, style){
+    duration = _duration;
+    nbTrack = _nbTrack;
+    for (int i = 0; i < _nbTrack; i++)
+    {
+        tracksTitle.push_back(_tracksTitle[i]);
+    }
+    productionCompany = _productionCompany;
+}
+
 CD::CD(string parameters)
 {
-    parameters = Media::Media(parameters);
+    Media::Media(&parameters);
     while(x<5 or taille!=0){
         int pos = parameters.find(';');
         switch(x)
@@ -29,7 +39,7 @@ CD::CD(string parameters)
             case 1: duration = parameters.substr(0, pos);
             case 2: nbTrack = parameters.substr(0, pos);
             case 3: productionCompany = parameters.substr(0, pos);
-            case 4: trackTitle = parameters.substr(0, pos);
+            case 4: tracksTitle = parameters.substr(0, pos);
         }
         x++;
         parameters = parameters.substr(pos+1, taille-(pos+1));
@@ -68,7 +78,7 @@ void CD::show(){
 }
 
 string CD::toString(){
-    string toString = 'CD;';
-    toString += Media.toString();
-    return toString+";"+duration+";"+nbTrack+";"+tracksTitle+";"+productionCompany;
+    string toString = "CD;";
+    toString += Media::toString();
+    return toString+";"+to_string(duration)+";"+to_string(nbTrack)+";"+tracksTitle+";"+productionCompany;
 }
