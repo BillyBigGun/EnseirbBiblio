@@ -21,6 +21,24 @@ Book::Book(int id, string title, string author, string style, int _nbPages, stri
         resume = _resume;
 }
 
+Book::Book(string parameters)
+{
+    parameters = Media::Media(parameters);
+    while(x<5 or taille!=0){
+        int pos = parameters.find(';');
+        switch(x)
+        {
+            case 1: nbPages = parameters.substr(0, pos);
+            case 2: date = parameters.substr(0, pos);
+            case 3: collection = parameters.substr(0, pos);
+            case 4: resume = parameters.substr(0, pos);
+        }
+        x++;
+        parameters = parameters.substr(pos+1, taille-(pos+1));
+    }
+    return parameters;
+}
+
 int  Book :: getNbPages(){
     return nbPages;
 }
@@ -44,4 +62,10 @@ void Book::show(){
     cout<<"Year : "<<date<<endl;
     cout<<"Collection : "<<collection<<endl;
     cout<<"Resume : "<<resume<<endl;
+}
+
+string Book::toString(){
+    string toString = 'book;';
+    toString += Media.toString();
+    return toString+";"+titnbPages+";"+date+";"+collection+";"+resume;
 }
