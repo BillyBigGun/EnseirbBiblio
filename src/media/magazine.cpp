@@ -3,7 +3,7 @@
 #include<fstream>
 #include<string>
 
-Magasine::Magasine() : Media(){
+Magasine::Magasine() : Book(){
     cout << "Number of Articles : ";
     cin >> nbArticles;
     cout << "Articles : " << endl;
@@ -26,21 +26,28 @@ Magasine::Magasine(int id, string title, string author, string style,int _nbPage
     editor = _editor;
 }
 
-Magasine::Magasine(string parameters)
+Magasine::Magasine(string parameters):Book(&parameters)
 {
-    parameters = Book::Book(parameters);
+    int taille = parameters.size();
+    int x=1;
     while(x<4 or taille!=0){
         int pos = parameters.find(';');
         switch(x)
         {
-            case 1: nbArticles = parameters.substr(0, pos);
-            case 2: article = parameters.substr(0, pos);
+            case 1: nbArticles = stoi(parameters.substr(0, pos));
+            case 2: 
+                for(int i = 0; i < nbArticles; i++){
+                    pos = parameters.find(';');
+                    articles.push_back(parameters.substr(0, pos));
+                    parameters = parameters.substr(pos+1, taille-(pos+1));
+                }
+                break;
             case 3: editor = parameters.substr(0, pos);
         }
         x++;
         parameters = parameters.substr(pos+1, taille-(pos+1));
+        int taille = parameters.size();
     }
-    return parameters;
 }
 
 int Magasine :: getNbArticles(){
@@ -69,6 +76,11 @@ void Magasine::show(){
 
 string Magasine::toString(){
     string toString = "Magasine;";
-    toString += Book::toString()
-    return toString+";"+to_string(nbArticles)+";"+articles+";"+editor;
+    toString += Book::toString();
+    toString += ";"+to_string(nbArticles)+";";
+    for(string articles : articles){
+        toString += articles+";";
+    }
+    toString += editor;
+    return toString;
 }

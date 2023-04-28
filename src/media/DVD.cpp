@@ -26,21 +26,27 @@ DVD::DVD(int id, string title, string author, string style,int _duration, int _n
     }
 }
 
-DVD::DVD(string parameters)
+DVD::DVD(string parameters):Media(&parameters)
 {
-    parameters = Media::Media(parameters);
+    int taille = parameters.size();
+    int x=1;
     while(x<4 or taille!=0){
         int pos = parameters.find(';');
         switch(x)
         {
-            case 1: duration = parameters.substr(0, pos);
-            case 2: nbTrack = parameters.substr(0, pos);
-            case 3: trackTitle = parameters.substr(0, pos);
+            case 1: duration = stoi(parameters.substr(0, pos));
+            case 2: nbTrack = stoi(parameters.substr(0, pos));
+            case 3: 
+                for(int i = 0; i < nbTrack; i++){
+                    pos = parameters.find(';');
+                    tracksTitle.push_back(parameters.substr(0, pos));
+                }
+                break;
         }
         x++;
         parameters = parameters.substr(pos+1, taille-(pos+1));
+        int taille = parameters.size();
     }
-    return parameters;
 }
 
 int DVD :: getDuration(){
@@ -70,5 +76,8 @@ void DVD::show(){
 string DVD::toString(){
     string toString = "DVD;";
     toString += Media::toString();
-    return toString+";"+to_string(duration)+";"+to_string(nbTrack)+";"+tracksTitle;
+    toString += ";"+to_string(duration)+";"+to_string(nbTrack)+";";
+    for(string trackTitle : tracksTitle){
+        toString += trackTitle+";";
+    }
 }

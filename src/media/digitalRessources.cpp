@@ -18,21 +18,22 @@ DigitalRessources::DigitalRessources(int id, string title, string author, string
     type = _type;
 }
 
-DigitalRessources::DigitalRessources(string parameters)
+DigitalRessources::DigitalRessources(string parameters):Media(&parameters)
 {
-    parameters = Media::Media(parameters);
+    int taille = parameters.size();
+    int x = 1;
     while(x<4 or taille!=0){
         int pos = parameters.find(';');
         switch(x)
         {
             case 1: type = parameters.substr(0, pos);
-            case 2: size = parameters.substr(0, pos);
+            case 2: size = stoi(parameters.substr(0, pos));
             case 3: url = parameters.substr(0, pos);
         }
         x++;
         parameters = parameters.substr(pos+1, taille-(pos+1));
+        int taille = parameters.size();
     }
-    return parameters;
 }
 
 int DigitalRessources :: getSize(){
