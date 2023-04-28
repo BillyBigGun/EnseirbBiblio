@@ -23,15 +23,15 @@ Media::Media(){
         reserve = 0;
 }
 
-Media::Media(string parameters)
+Media::Media(string* parameters)
 {
     int taille = parameters.size();
-    x=1;
+    int x=1;
     while(x<5 or taille!=0){
         int pos = parameters.find(';');
         switch(x)
         {
-            case 1: id = parameters.substr(0, pos);
+            case 1: id = atoi(parameters.substr(0, pos));
             case 2: title = parameters.substr(0, pos);
             case 3: author = parameters.substr(0, pos);
             case 4: style = parameters.substr(0, pos);
@@ -39,7 +39,6 @@ Media::Media(string parameters)
         x++;
         parameters = parameters.substr(pos+1, taille-(pos+1));
     }
-    return parameters;
 }
 
 void Media :: borrow(int _userBorrowId){

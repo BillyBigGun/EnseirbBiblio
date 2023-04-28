@@ -68,7 +68,7 @@ void DVD::show(){
 }
 
 string DVD::toString(){
-    string toString = 'DVD;';
+    string toString = "DVD;";
     toString += Media::toString();
     return toString+";"+to_string(duration)+";"+to_string(nbTrack)+";"+tracksTitle;
 }

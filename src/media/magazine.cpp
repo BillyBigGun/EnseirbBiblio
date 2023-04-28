@@ -68,7 +68,7 @@ void Magasine::show(){
 }
 
 string Magasine::toString(){
-    string toString = 'Magasine;';
+    string toString = "Magasine;";
     toString += Book::toString()
     return toString+";"+to_string(nbArticles)+";"+articles+";"+editor;
 }

@@ -14,15 +14,7 @@ class CD : public Media{
     //constructeur
     CD(); //constructeur par defaut
     
-    CD(int id, string title, string author, string style, string _date,int _duration, int _nbTrack, string _tracksTitle[], string _productionCompany) : Media(id, title, author, style){
-        duration = _duration;
-        nbTrack = _nbTrack;
-        for (int i = 0; i < _nbTrack; i++)
-        {
-            tracksTitle.push_back(_tracksTitle[i]);
-        }
-        productionCompany = _productionCompany;
-    }
+    CD(int id, string title, string author, string style, string _date,int _duration, int _nbTrack, string _tracksTitle[], string _productionCompany) : Media(id, title, author, style);
     //deconstructeur
     ~CD() override=default;
 

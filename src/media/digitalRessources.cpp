@@ -56,7 +56,7 @@ void DigitalRessources::show(){
 }
 
 string DigitalRessources::toString(){
-    string toString = 'DigitalRessources;';
+    string toString = "DigitalRessources;";
     toString += Media::toString();
     return toString+";"+type+";"+to_string(size)+";"+url;
 }

@@ -47,7 +47,7 @@ void VHS::show(){
 }
 
 string VHS::toString(){
-    string toString = 'VHS;';
+    string toString = "VHS;";
     toString += Media::toString();
     return toString+";"+to_string(duration)+";"+production;
 }
