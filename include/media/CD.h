@@ -31,7 +31,8 @@ class CD : public Media{
     int getNbTrack();
     list<string> getTracksTitle();
     string getProductionCompany();
-    void show();
+    void show() override;
+    string toString() override;
 
     private : 
     //attributs

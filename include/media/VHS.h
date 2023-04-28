@@ -22,6 +22,7 @@ class VHS : public Media{
     int getDuration();
     string getProduction();
     void show() override;
+    string toString() override;
 
     private :
     //attributs

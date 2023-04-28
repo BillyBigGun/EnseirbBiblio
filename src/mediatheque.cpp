@@ -227,9 +227,7 @@ void Mediatheque::saveMediatheque(string filename){
     {
         for (map<int, Media*>::iterator i = mediaList.begin(); i != mediaList.end(); ++i){
             Media* current_media = i->second;
-            
-            // TODO fonction toString()
-            // TODO fonction fromString()
+
             //writeFile << current_media.toString() << endl;
         }
 

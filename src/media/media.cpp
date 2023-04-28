@@ -85,3 +85,7 @@ void Media :: show(){
     cout<<"Author : "<<author<<endl;
     cout<<"Style : "<<style<<endl;
 }
+
+string Media::toString(){
+    return to_string(getId())+title+author+style;
+}

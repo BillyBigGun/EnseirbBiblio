@@ -22,6 +22,7 @@ class Book : public Media{
     string getCollection();
     string getResume();
     void show() override;
+    string toString() override;
 
     private:
     //attributs

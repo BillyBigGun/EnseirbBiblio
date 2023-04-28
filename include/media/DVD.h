@@ -28,6 +28,7 @@ class DVD : public Media{
     int getNbTrack();
     list<string> getTracksTitle();
     void show() override;
+    string toString() override;
 
     private : 
     //attributs

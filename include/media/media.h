@@ -26,6 +26,7 @@ class Media{
     void reserveMedia(int _userReserveId);
     void returnMedia();
     virtual void show();
+    virtual string toString();
 
     private : 
     //attributs

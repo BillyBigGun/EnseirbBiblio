@@ -25,6 +25,7 @@ class DigitalRessources : public Media{
     string getUrl();
     string getType();
     void show() override;
+    string toString() override;
 
 
     private : 
