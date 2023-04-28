@@ -15,21 +15,22 @@ VHS::VHS(int id, string title, string author, string style,int _duration, string
     production = _production;
 }
 
-VHS::VHS(string parameters)
+VHS::VHS(string parameters):Media(&parameters)
 {
-    parameters = Media::Media(parameters);
+    int taille = parameters.size();
+    int x=1;
     while(x<3 or taille!=0){
         int pos = parameters.find(';');
         switch(x)
         {
-            case 1: duration = parameters.substr(0, pos);
+            case 1: duration = stoi(parameters.substr(0, pos));
             case 2: production = parameters.substr(0, pos);
         }
         x++;
         parameters = parameters.substr(pos+1, taille-(pos+1));
     }
-    return parameters;
 }
+
 
 int VHS :: getDuration(){
     return duration;

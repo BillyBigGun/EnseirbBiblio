@@ -21,15 +21,16 @@ Book::Book(int id, string title, string author, string style, int _nbPages, stri
         resume = _resume;
 }
 
-Book::Book(string parameters)
+Book::Book(string parameters):Media(&parameters)
 {
-    parameters = Media::Media(parameters);
+    int taille = parameters.size();
+    int x=1;
     while(x<5 or taille!=0){
         int pos = parameters.find(';');
         switch(x)
         {
-            case 1: nbPages = parameters.substr(0, pos);
-            case 2: date = parameters.substr(0, pos);
+            case 1: nbPages = stoi(parameters.substr(0, pos));
+            case 2: date = stoi(parameters.substr(0, pos));
             case 3: collection = parameters.substr(0, pos);
             case 4: resume = parameters.substr(0, pos);
         }
