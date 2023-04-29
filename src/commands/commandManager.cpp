@@ -63,12 +63,21 @@ string* splitCommand(string command)
 
 void CommandManager::executeCommand(string command){
     //Split the command if needed
-    string* split_command = splitCommand(command);
-    commands[split_command[0]]->execute(&mediatheque, split_command[1]);
+    try{
+        string* split_command = splitCommand(command);
 
-    delete[] split_command;
-    
-    cout << "[Command executed]" << endl;
+        if(commands.find(split_command[0]) == commands.end())
+                throw "!COMMAND_NOT_FOUND!";
+            
+        commands[split_command[0]]->execute(&mediatheque, split_command[1]);
+        delete[] split_command;
+        cout << "[Command executed]" << endl;
+    }
+    catch(const char* msg){
+        cout << msg << endl;
+        cout << "Enter a valid command or type HELP to get a list of commands" << endl;
+        cout << "---" << endl;
+    }
 }
 
 void CommandManager::addMedia(Media* media){

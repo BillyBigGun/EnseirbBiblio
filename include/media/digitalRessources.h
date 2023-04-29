@@ -13,7 +13,7 @@ class DigitalRessources : public Media{
     DigitalRessources();
     //constructeur
     DigitalRessources(int id, string title, string author, string style,int _size, string _url, string _type);
-    DigitalRessources(string parameters);
+    DigitalRessources(string* parameters);
     //deconstructeur
     ~DigitalRessources() override=default;
 

@@ -4,12 +4,17 @@
 #include<string>
 
 DigitalRessources :: DigitalRessources() : Media(){
+    string temp;
+
     cout << "Type : ";
-    cin >> type;
+    getline(cin , type);
+    
     cout << "Size : ";
-    cin >> size;
+    getline(cin, temp);
+    size = stoi(temp);
+    
     cout << "URL : ";
-    cin >> url;
+    getline(cin, url);
 }
 
 DigitalRessources::DigitalRessources(int id, string title, string author, string style,int _size, string _url, string _type): Media(id, title, author, style){
@@ -18,21 +23,28 @@ DigitalRessources::DigitalRessources(int id, string title, string author, string
     type = _type;
 }
 
-DigitalRessources::DigitalRessources(string parameters):Media(&parameters)
+DigitalRessources::DigitalRessources(string* parameters):Media(parameters)
 {
-    int taille = parameters.size();
+    int taille = parameters->size();
     int x = 1;
-    while(x<4 or taille!=0){
-        int pos = parameters.find(';');
+
+    while(x<4 && taille!=0){
+        int pos = parameters->find(';');
         switch(x)
         {
-            case 1: type = parameters.substr(0, pos);
-            case 2: size = stoi(parameters.substr(0, pos));
-            case 3: url = parameters.substr(0, pos);
+            case 1: 
+                type = parameters->substr(0, pos);
+                break;
+            case 2: 
+                size = stoi(parameters->substr(0, pos));
+                break;
+            case 3: 
+                url = parameters->substr(0, pos);
+                break;
         }
         x++;
-        parameters = parameters.substr(pos+1, taille-(pos+1));
-        int taille = parameters.size();
+        *parameters = parameters->substr(pos+1, taille-(pos+1));
+        taille = parameters->size();
     }
 }
 

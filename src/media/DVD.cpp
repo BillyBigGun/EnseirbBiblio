@@ -3,16 +3,22 @@
 #include<fstream>
 #include<string>
 
-DVD::DVD() : Media(){
+DVD::DVD() : Media()
+{
+    string temp;
     cout << "Duration : ";
-    cin >> duration;
+    getline(cin, temp);
+    duration = stoi(temp);
+    
     cout << "Number of Tracks : ";
-    cin >> nbTrack;
+    getline(cin, temp);
+    nbTrack = stoi(temp);
+    
     cout << "Tracks : " << endl;
     for(int i = 0; i < nbTrack; i++){
         string trackTitle;
         cout << "Track " << i+1 << " : ";
-        cin >> trackTitle;
+        getline(cin, trackTitle);
         tracksTitle.push_back(trackTitle);
     }
 }
@@ -26,26 +32,37 @@ DVD::DVD(int id, string title, string author, string style,int _duration, int _n
     }
 }
 
-DVD::DVD(string parameters):Media(&parameters)
+DVD::DVD(string* parameters):Media(parameters)
 {
-    int taille = parameters.size();
+    int taille = parameters->size();
     int x=1;
-    while(x<4 or taille!=0){
-        int pos = parameters.find(';');
+    while(x<4 && taille!=0){
+        int pos = parameters->find(';');
         switch(x)
         {
-            case 1: duration = stoi(parameters.substr(0, pos));
-            case 2: nbTrack = stoi(parameters.substr(0, pos));
+            case 1: 
+                duration = stoi(parameters->substr(0, pos));
+                break;
+            case 2: 
+                nbTrack = stoi(parameters->substr(0, pos));
+                break;
             case 3: 
                 for(int i = 0; i < nbTrack; i++){
-                    pos = parameters.find(';');
-                    tracksTitle.push_back(parameters.substr(0, pos));
+                    pos = parameters->find(';');
+                    tracksTitle.push_back(parameters->substr(0, pos));
+
+                    // If it's not the last track
+                    // This operation is done after the case also.
+                    if(i < nbTrack-1){
+                        *parameters = parameters->substr(pos+1, taille-(pos+1));
+                        taille = parameters->size();
+                    }
                 }
                 break;
         }
         x++;
-        parameters = parameters.substr(pos+1, taille-(pos+1));
-        int taille = parameters.size();
+        *parameters = parameters->substr(pos+1, taille-(pos+1));
+        taille = parameters->size();
     }
 }
 
@@ -80,4 +97,5 @@ string DVD::toString(){
     for(string trackTitle : tracksTitle){
         toString += trackTitle+";";
     }
+    return toString;
 }

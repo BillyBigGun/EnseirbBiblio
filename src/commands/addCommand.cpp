@@ -16,28 +16,28 @@ void AddCommand::execute(Mediatheque* mediatheque, string type)
         }
         else if(mediaType.compare("CD") == 0){
             cout << "Adding a CD" << endl;
-            CD cd = CD();
-            mediatheque->addMedia(&cd);
+            CD* cd = new CD();
+            mediatheque->addMedia(cd);
         }
         else if(mediaType.compare("DIGITAL_RESSOURCE") == 0){
             cout << "Adding a digital ressource" << endl;
-            DigitalRessources digitalRessources = DigitalRessources();
-            mediatheque->addMedia(&digitalRessources);
+            DigitalRessources* digitalRessources = new DigitalRessources();
+            mediatheque->addMedia(digitalRessources);
         }
         else if(mediaType.compare("DVD") == 0){
             cout << "Adding a DVD" << endl;
-            DVD dvd = DVD();
-            mediatheque->addMedia(&dvd);
+            DVD* dvd = new DVD();
+            mediatheque->addMedia(dvd);
         }
         else if(mediaType.compare("MAGASINE") == 0){
             cout << "Adding a magasine" << endl;
-            Magasine magasine = Magasine();
-            mediatheque->addMedia(&magasine);
+            Magasine* magasine = new Magasine();
+            mediatheque->addMedia(magasine);
         }
         else if(mediaType.compare("VHS") == 0){
             cout << "Adding a VHS" << endl;
-            VHS vhs = VHS();
-            mediatheque->addMedia(&vhs);
+            VHS* vhs = new VHS();
+            mediatheque->addMedia(vhs);
         }
         else{
             cout << "ERROR : media type not found" << endl;

@@ -6,15 +6,18 @@
 CD :: CD() : Media(){
     cout << "Duration : ";
     cin >> duration;
+
     cout << "Number of Tracks : ";
     cin >> nbTrack;
+
     cout << "Production Company : ";
-    cin >> productionCompany;
+    getline(cin, productionCompany);
+
     cout << "Tracks : " << endl;
     for(int i = 0; i < nbTrack; i++){
         string trackTitle;
         cout << "Track " << i+1 << " : ";
-        cin >> trackTitle;
+        getline(cin, trackTitle);
         tracksTitle.push_back(trackTitle);
     }
 }
@@ -29,28 +32,42 @@ CD::CD(int id, string title, string author, string style, string _date,int _dura
     productionCompany = _productionCompany;
 }
 
-CD::CD(string parameters):Media(&parameters)
+CD::CD(string* parameters):Media(parameters)
 {
-    int taille = parameters.size();
+    int taille = parameters->size();
     int x=1;
-    while(x<5 or taille!=0){
-        int pos = parameters.find(';');
+    while(x<5 && taille!=0){
+        int pos = parameters->find(';');
         switch(x)
         {
-            case 1: duration = stoi(parameters.substr(0, pos));
-            case 2: nbTrack = stoi(parameters.substr(0, pos));
-            case 3: productionCompany = parameters.substr(0, pos);
-            case 4: 
+            case 1: 
+                duration = stoi(parameters->substr(0, pos));
+                break;
+            case 2: 
+                nbTrack = stoi(parameters->substr(0, pos));
+                break;
+            case 3: 
                 for (int i = 0; i < nbTrack; i++)
                 {
-                    pos = parameters.find(';');
-                    tracksTitle.push_back(parameters.substr(0, pos));
-                    parameters = parameters.substr(pos+1, taille-(pos+1));
+                    pos = parameters->find(';');
+                    tracksTitle.push_back(parameters->substr(0, pos));
+
+                    // If it's not the last track
+                    // This operation is done after the case also.
+                    if(i < nbTrack-1){
+                        *parameters = parameters->substr(pos+1, taille-(pos+1));
+                        taille = parameters->size();
+                    }
+                    
                 }
+                break;
+            case 4: 
+                productionCompany = parameters->substr(0, pos);
                 break;
         }
         x++;
-        parameters = parameters.substr(pos+1, taille-(pos+1));
+        *parameters = parameters->substr(pos+1, taille-(pos+1));
+        taille = parameters->size();
     }
 }
 
@@ -87,10 +104,11 @@ void CD::show(){
 string CD::toString(){
     string toString = "CD;";
     toString += Media::toString();
-    toString = toString+";"+to_string(duration)+";"+to_string(nbTrack)+";";
+    toString += ";"+to_string(duration)+";"+to_string(nbTrack)+";";
     
     for(string tracksTitle : tracksTitle){
         toString = toString+tracksTitle+";";
     }
     toString += productionCompany;
+    return toString;
 }

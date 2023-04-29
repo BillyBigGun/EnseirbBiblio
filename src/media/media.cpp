@@ -2,14 +2,20 @@
 
 
 Media::Media(){
+    string temp;
     cout << "ID : ";
-    cin >> id;
+    getline(cin, temp);
+    id = stoi(temp);
+
     cout << "Title : ";
-    cin >> title;
+    getline(cin, title);
+
     cout << "Author : ";
-    cin >> author;
+    getline(cin, author);
+
     cout << "Style : ";
-    cin >> style;
+    getline(cin, style);
+    
     isAvailable = 1;
     reserve = 0;
 }
@@ -27,18 +33,27 @@ Media::Media(string* parameters)
 {
     int taille = parameters->size();
     int x=1;
-    while(x<5 or taille!=0){
+    while(x<5 && taille!=0){
         int pos = parameters->find(';');
         
         switch(x)
         {
-            case 1: id = stoi(parameters->substr(0, pos));
-            case 2: title = parameters->substr(0, pos);
-            case 3: author = parameters->substr(0, pos);
-            case 4: style = parameters->substr(0, pos);
+            case 1: 
+                id = stoi(parameters->substr(0, pos));
+                break;
+            case 2: 
+                title = parameters->substr(0, pos);
+                break;
+            case 3: 
+                author = parameters->substr(0, pos);
+                break;
+            case 4: 
+                style = parameters->substr(0, pos);
+                break;
         }
         x++;
         *parameters = parameters->substr(pos+1, taille-(pos+1));
+        taille = parameters->size();
     }
 }
 
@@ -106,5 +121,5 @@ void Media :: show(){
 }
 
 string Media::toString(){
-    return to_string(getId())+title+";"+author+";"+style;
+    return to_string(getId())+";"+title+";"+author+";"+style;
 }

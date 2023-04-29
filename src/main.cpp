@@ -15,15 +15,10 @@ using namespace std;
 #include "mediatheque.h"
 
 void test_add_command(CommandManager* commandManager){
-    // commandManager.executeCommand("ADD BOOK");
-    // commandManager.executeCommand("ADD CD");
-    // commandManager.executeCommand("ADD DIGITAL_RESSOURCE");
-    // commandManager.executeCommand("ADD DVD");
-    // commandManager.executeCommand("ADD MAGASINE");
-    // commandManager.executeCommand("ADD VHS");
+    
     string tracks[] = {"TRACK1", "TRACK2"};
     
-    Media * book = new Book(1, "Le petit prince", "Antoine de Saint-Exupéry", "Sci-Fi", 200, "1999-10-12", "collection", "resume");
+    Media * book = new Book(1, "Le petit prince", "Antoine de Saint-Exupéry", "Sci-Fi", 200, "1999", "collection", "resume");
     commandManager->addMedia(book);
     
     Media * cd = new CD(2, "Boom", "Will", "style", "2000", 20, 2, tracks, "company");
@@ -45,7 +40,7 @@ void test_add_command(CommandManager* commandManager){
 }
 
 void test_add_delete_commands(CommandManager* commandManager){
-    Media * book = new Book(1, "Le petit prince", "Antoine de Saint-Exupéry", "Sci-Fi", 200, "1999-10-12", "collection", "resume");
+    Media * book = new Book(1, "Le petit prince", "Antoine de Saint-Exupéry", "Sci-Fi", 200, "1999", "collection", "resume");
     commandManager->addMedia(book);
     commandManager->executeCommand("LIST");
     commandManager->executeCommand("DELETE 1");
@@ -67,11 +62,11 @@ void test_bye_command(CommandManager* commandManager){
 
 void test_save_command(CommandManager* commandManager){
     test_add_command(commandManager);
-    commandManager->executeCommand("SAVE");
+    commandManager->executeCommand("SAVE file.txt");
 }
 
 void test_load_command(CommandManager* commandManager){
-    commandManager->executeCommand("LOAD");
+    commandManager->executeCommand("LOAD file.txt");
     commandManager->executeCommand("LIST");
 }
 
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]){
 
     CommandManager commandManager;
     
-    // test_add_command(commandManager);
-    // test_add_delete_commands(commandManager);
+    // test_add_command(&commandManager);
+    // test_add_delete_commands(&commandManager);
     // test_search_command(&commandManager);
     // test_bye_command(&commandManager);
     // test_save_command(&commandManager);
+    test_load_command(&commandManager);
 
     //test_load_command(&commandManager);
-
+    //run();
+    
     return 0;
 }
 
@@ -96,9 +93,9 @@ void run(){
     CommandManager commandManager;
     string command;
     cout << "Welcome to the mediatheque" << endl;
-    cout << "Please enter a command" << endl;
-    cout << "Type HELP to get a list of commands" << endl;
     while(1){
+        cout << endl << "Please enter a command" << endl;
+        cout << "Type HELP to get a list of commands" << endl;
         getline(cin, command);
         commandManager.executeCommand(command);
     }

@@ -17,6 +17,8 @@
 #include "magazine.h"
 #include "VHS.h"
 
+#include <istream>
+
 // #include "user.h"
 
 
@@ -30,6 +32,7 @@ private:
     
     map<int, Media*> mediaList; // The list of all media in the mediatheque
     map<int, Media*> currentSearch;
+    void createMediaFromString(string line);
     // map<int, User> userList;
     // User currentUser;
 

@@ -14,7 +14,7 @@ class DVD : public Media{
     //constructeur
     DVD();
     DVD(int id, string title, string author, string style,int _duration, int _nbTrack, string _tracksTitle[]);
-    DVD(string parameters);
+    DVD(string* parameters);
     //deconstructeur
     ~DVD() override=default;
     //methodes

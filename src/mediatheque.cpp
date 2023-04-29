@@ -24,7 +24,7 @@ Mediatheque::Mediatheque(){
 
 Mediatheque::Mediatheque(string filename){
     loadMediatheque(filename);
-
+    clearSearch();
 }
 
 Mediatheque::~Mediatheque() = default;
@@ -34,7 +34,14 @@ void Mediatheque::addMedia(Media* media){
     cout << "Adding media to the mediatheque" << endl;
     int id = media->getId();
     
-    mediaList.insert(make_pair(id, media));
+    //If the id is not already in the map
+    if(mediaList.find(id) == mediaList.end()){
+        mediaList.insert(make_pair(id, media));
+    }
+    else{
+        cout << "This id is already in the mediatheque. Choose a different id" << endl;
+        delete media;
+    }
 
     clearSearch();
 }
@@ -72,10 +79,11 @@ Media* Mediatheque::findById(int id){
     }
     else{
         // The media is not found in the map
-        throw runtime_error( "Media not found in map for searching by ID : " + id);
+        cout << "Media not found in map for searching by ID : " <<  id << endl;
     }     
-
+    return nullptr;
 }
+
 map<int, Media*> Mediatheque::findByTitle(string title){
     
     map<int, Media*> newSearch;
@@ -163,7 +171,6 @@ void Mediatheque::showMedia(int id){
     try{
         Media* media = findById(id);
         media->show();
-        // TODO Add the function to display the media in each media
     }
     catch(exception e){printf("Media Not found. Cannot print it's value.");}
     
@@ -171,63 +178,91 @@ void Mediatheque::showMedia(int id){
 } //Print the information about the media
 
 void Mediatheque::showSearch(){
-    for(auto x : currentSearch){
-        x.second->show(); 
-        cout << endl;
+    try{
+        for(auto x : currentSearch)
+        {
+            x.second->show();
+            cout << endl;
+        }
     }
+    catch(exception e)
+    {printf("Media Not found. Cannot print it's value.");}
 }
 
-void createMediaFromString(string mediaString){
-    // substring with delimiter 
-    // vector<string> mediaInfo;
-    // splitString(mediaString, ';', mediaInfo);
+void Mediatheque::createMediaFromString(string line){
+    int pos = line.find(';');
+    int taille = line.size();
+    string mediaType = line.substr(0, pos);
 
-    // // Depending on the type of media, create the right media
-    // if (mediaInfo[0].compare("Book") == 0)
-    // {
-    //     Book* book = new Book(mediaInfo[1], mediaInfo[2], mediaInfo[3], mediaInfo[4], mediaInfo[5], mediaInfo[6]);
-    //     Mediatheque::addMedia(book);
-    // }
-    // else if(mediaInfo[0].compare("CD")){
-    //     CD* cd = new CD(mediaInfo[1], mediaInfo[2], mediaInfo[3], mediaInfo[4], mediaInfo[5], mediaInfo[6]);
-    //     Mediatheque::addMedia(cd);
-    // }
-    // else if(mediaInfo[0].compare("DVD")){
-    //     DVD* dvd = new DVD(mediaInfo[1], mediaInfo[2], mediaInfo[3], mediaInfo[4], mediaInfo[5], mediaInfo[6]);
-    //     Mediatheque::addMedia(dvd);
-    // }
-    // else{
-    //     throw new runtime_error("The media type is not recognized.");
-    // }
+    line = line.substr(pos+1, taille);
+
+    // Depending on the type of media, create the right media
+    if (mediaType.compare("Book") == 0)
+    {
+        Book* book = new Book(&line);
+        addMedia(book);
+    }
+    else if(mediaType.compare("CD") == 0){
+        CD* cd = new CD(&line);
+        addMedia(cd);
+    }
+    else if (mediaType.compare("DigitalRessources") == 0){
+        DigitalRessources* digital = new DigitalRessources(&line);
+        addMedia(digital);
+    }
+    else if(mediaType.compare("DVD") == 0){
+        DVD* dvd = new DVD(&line);
+        addMedia(dvd);
+    }
+    else if(mediaType.compare("Magasine") == 0){
+        Magasine* magasine = new Magasine(&line);
+        addMedia(magasine);
+    }
+    else if(mediaType.compare("VHS") == 0){
+        VHS* vhs = new VHS(&line);
+        addMedia(vhs);
+    }
+    else{
+        cout << "The media type in the file is not recognized." << endl;
+    }
 
 }
 
 void Mediatheque::loadMediatheque(string filename){
-    // string filePath = Database_Path + filename;
-    // int max_char = 1000;
-    // char mediaChar[max_char];
-    // char delimiter = '\n';
+    if(filename.empty()){
+        cout << "The filename is empty. Could not load the file" << endl;
+        return;
+    }
 
-    // ifstream readFile(filePath);
-    // if(readFile.good())
-    // {
-    //     //Check if end of file
-    //     while(readFile.getline(mediaChar, max_char, delimiter) != istream().end()){
-    //         string mediaString = mediaChar.toString();
-    //         createMediaFromString(mediaString);
-    //     }
+    string filePath = Database_Path + filename;
+    string line;
+    //char delimiter = '\n';
+
+    ifstream readFile;
+    readFile.open(filePath);
+
+    if(readFile.good())
+    {
+        //Check if end of file
+        while(!readFile.eof()){
+            getline(readFile, line);
+            createMediaFromString(line);
+        }
         
-    // }
-    // else{
-    //     throw new runtime_error("The file could not be open.");
-    // }
+    }
+    else{
+        cout << "The file could not be open." << endl;
+    }
     
 
-} // Load the mediatheque from a filename
+}
 
 void Mediatheque::saveMediatheque(string filename){
+    if(filename.empty()){
+        cout << "The filename is empty. Could not save the file" << endl;
+        return;
+    }
     string filepath = Database_Path + filename;
-
     ofstream writeFile;
     writeFile.open(filepath);
     
@@ -235,14 +270,15 @@ void Mediatheque::saveMediatheque(string filename){
     {
         for (map<int, Media*>::iterator i = mediaList.begin(); i != mediaList.end(); ++i){
             Media* current_media = i->second;
-
-            writeFile << current_media->toString() << endl;
+            string mediaString = current_media->toString();
+            writeFile << mediaString << endl;
         }
 
         writeFile.close();
     }
     else{
-        throw new runtime_error("The file could not be open.");
+        //throw new runtime_error("The file could not be open.");
+        cout << "The file could not be open." << endl;
     }
 
     

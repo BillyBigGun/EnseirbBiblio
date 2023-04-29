@@ -4,10 +4,13 @@
 #include<string>
 
 VHS::VHS() : Media(){
+    string temp;
     cout << "Duration : ";
-    cin >> duration;
+    getline(cin, temp);
+    duration = stoi(temp);
+    
     cout << "Production Company : ";
-    cin >> production;
+    getline(cin, production);
 }
 
 VHS::VHS(int id, string title, string author, string style,int _duration, string _production): Media(id, title, author, style){
@@ -15,19 +18,24 @@ VHS::VHS(int id, string title, string author, string style,int _duration, string
     production = _production;
 }
 
-VHS::VHS(string parameters):Media(&parameters)
+VHS::VHS(string* parameters):Media(parameters)
 {
-    int taille = parameters.size();
+    int taille = parameters->size();
     int x=1;
-    while(x<3 or taille!=0){
-        int pos = parameters.find(';');
+    while(x<3 && taille!=0){
+        int pos = parameters->find(';');
         switch(x)
         {
-            case 1: duration = stoi(parameters.substr(0, pos));
-            case 2: production = parameters.substr(0, pos);
+            case 1: 
+                duration = stoi(parameters->substr(0, pos));
+                break;
+            case 2: 
+                production = parameters->substr(0, pos);
+                break;
         }
         x++;
-        parameters = parameters.substr(pos+1, taille-(pos+1));
+        *parameters = parameters->substr(pos+1, taille-(pos+1));
+        taille = parameters->size();
     }
 }
 

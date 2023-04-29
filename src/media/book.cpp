@@ -2,14 +2,19 @@
 
 Book::Book() : Media()
 {
+    string temp;
     cout << "Number of pages : ";
-    cin >> nbPages;
+    getline(cin, temp);
+    nbPages = stoi(temp);
+
     cout << "Year : ";
-    cin >> date;
+    getline(cin, date);
+
     cout << "Collection : ";
-    cin >> collection;
+    getline(cin, collection);
+    
     cout << "Resume : ";
-    cin >> resume;
+    getline(cin, resume);
     
 }
 
@@ -21,23 +26,31 @@ Book::Book(int id, string title, string author, string style, int _nbPages, stri
         resume = _resume;
 }
 
-Book::Book(string parameters):Media(&parameters)
+Book::Book(string* parameters):Media(parameters)
 {
-    int taille = parameters.size();
+    int taille = parameters->size();
     int x=1;
-    while(x<5 or taille!=0){
-        int pos = parameters.find(';');
+    while(x<5 && taille!=0){
+        int pos = parameters->find(';');
         switch(x)
         {
-            case 1: nbPages = stoi(parameters.substr(0, pos));
-            case 2: date = stoi(parameters.substr(0, pos));
-            case 3: collection = parameters.substr(0, pos);
-            case 4: resume = parameters.substr(0, pos);
+            case 1: 
+                nbPages = stoi(parameters->substr(0, pos));
+                break;
+            case 2: 
+                date = parameters->substr(0, pos);
+                break;
+            case 3: 
+                collection = parameters->substr(0, pos);
+                break;
+            case 4: 
+                resume = parameters->substr(0, pos);
+                break;
         }
         x++;
-        parameters = parameters.substr(pos+1, taille-(pos+1));
-    }
-    return parameters;
+        *parameters = parameters->substr(pos+1, taille-(pos+1));
+        taille = parameters->size();
+    } 
 }
 
 int  Book :: getNbPages(){
@@ -66,7 +79,7 @@ void Book::show(){
 }
 
 string Book::toString(){
-    string toString = "book;";
+    string toString = "Book;";
     toString += Media::toString();
     return toString+";"+to_string(nbPages)+";"+date+";"+collection+";"+resume;
 }

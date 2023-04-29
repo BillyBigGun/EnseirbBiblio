@@ -1,0 +1,6 @@
+Book;1;Le petit prince;Antoine de Saint-Exupéry;Sci-Fi;200;1999;collection;resume
+CD;2;Boom;Will;style;20;2;TRACK1;TRACK2;company
+DVD;3;Batman;Smith;style;20;2;TRACK1;TRACK2;
+VHS;4;Wolf;Gab;style;20;production
+DigitalRessources;5;Bugsbunny;Gregs;style;type;20;url
+Magasine;6;Docteur;Elen;style;20;2000;collection;resume;2;TRACK1;TRACK2;editor

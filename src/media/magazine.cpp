@@ -4,17 +4,20 @@
 #include<string>
 
 Magasine::Magasine() : Book(){
+    string temp;
     cout << "Number of Articles : ";
-    cin >> nbArticles;
+    getline(cin, temp);
+    nbArticles = stoi(temp);
+
     cout << "Articles : " << endl;
     for(int i = 0; i < nbArticles; i++){
         string article;
         cout << "Article " << i+1 << " : ";
-        cin >> article;
+        getline(cin, article);
         articles.push_back(article);
     }
     cout << "Editor : ";
-    cin >> editor;
+    getline(cin, editor);
 }
 
 Magasine::Magasine(int id, string title, string author, string style,int _nbPages, string _date, string _collection, string _resume, int _nbArticles, string _articles[], string _editor): Book(id, title, author, style, _nbPages, _date, _collection, _resume){
@@ -26,27 +29,38 @@ Magasine::Magasine(int id, string title, string author, string style,int _nbPage
     editor = _editor;
 }
 
-Magasine::Magasine(string parameters):Book(&parameters)
+Magasine::Magasine(string* parameters):Book(parameters)
 {
-    int taille = parameters.size();
+    int taille = parameters->size();
     int x=1;
-    while(x<4 or taille!=0){
-        int pos = parameters.find(';');
+    while(x<4 && taille!=0){
+        int pos = parameters->find(';');
         switch(x)
         {
-            case 1: nbArticles = stoi(parameters.substr(0, pos));
+            case 1: 
+                nbArticles = stoi(parameters->substr(0, pos));
+                break;
             case 2: 
                 for(int i = 0; i < nbArticles; i++){
-                    pos = parameters.find(';');
-                    articles.push_back(parameters.substr(0, pos));
-                    parameters = parameters.substr(pos+1, taille-(pos+1));
+                    pos = parameters->find(';');
+                    articles.push_back(parameters->substr(0, pos));
+
+                    // If it's not the last track
+                    // This operation is done after the case also.
+                    if(i < nbArticles-1){
+                        *parameters = parameters->substr(pos+1, taille-(pos+1));
+                        taille = parameters->size();
+                    }
                 }
                 break;
-            case 3: editor = parameters.substr(0, pos);
+            case 3: 
+                editor = parameters->substr(0, pos);
+                break;
         }
         x++;
-        parameters = parameters.substr(pos+1, taille-(pos+1));
-        int taille = parameters.size();
+        cout << "parameters : " << *parameters << endl;
+        *parameters = parameters->substr(pos+1, taille-(pos+1));
+        taille = parameters->size();
     }
 }
 
@@ -76,7 +90,13 @@ void Magasine::show(){
 
 string Magasine::toString(){
     string toString = "Magasine;";
-    toString += Book::toString();
+    string bookString = Book::toString();
+
+    //Enlever Book du book string
+    int pos = bookString.find(';');
+    bookString = bookString.substr(pos+1, bookString.size()-(pos+1));
+    toString += bookString;
+
     toString += ";"+to_string(nbArticles)+";";
     for(string articles : articles){
         toString += articles+";";

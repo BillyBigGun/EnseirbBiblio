@@ -13,7 +13,7 @@ class VHS : public Media{
     //constructeur
     VHS();
     VHS(int id, string title, string author, string style,int _duration, string _production);
-    VHS(string parameters);
+    VHS(string* parameters);
     //deconstructeur
     ~VHS()override=default;
     //methodes
