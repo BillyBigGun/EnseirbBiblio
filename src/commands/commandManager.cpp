@@ -1,5 +1,6 @@
 
 #include "commandManager.h"
+#include <stdlib.h>
 
 CommandManager::CommandManager(){
     mediatheque = Mediatheque();
@@ -57,7 +58,8 @@ string* splitCommand(string command)
     split_command[0] = command_type;
     split_command[1] = command_param;
 
-    cout << endl << "[Command: "<< split_command[0] << " | Argument: " << split_command[1] << "]" << endl << endl;
+    cout << endl << "\033[32m[Command: "<< split_command[0] << " | Argument: " << split_command[1] << "]" << endl << endl;
+    cout << "\033[0m";
     return split_command;
 }
 
@@ -71,12 +73,15 @@ void CommandManager::executeCommand(string command){
             
         commands[split_command[0]]->execute(&mediatheque, split_command[1]);
         delete[] split_command;
+        cout << "\033[32m"; //Set the color to green
         cout << "[Command executed]" << endl;
+        cout << "\033[0m"; //Reset the color
     }
     catch(const char* msg){
+        cout << "\033[31m";
         cout << msg << endl;
         cout << "Enter a valid command or type HELP to get a list of commands" << endl;
-        cout << "---" << endl;
+        cout << "\033[0m";
     }
 }
 

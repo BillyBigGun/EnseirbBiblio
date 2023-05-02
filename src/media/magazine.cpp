@@ -58,7 +58,6 @@ Magasine::Magasine(string* parameters):Book(parameters)
                 break;
         }
         x++;
-        cout << "parameters : " << *parameters << endl;
         *parameters = parameters->substr(pos+1, taille-(pos+1));
         taille = parameters->size();
     }

@@ -81,10 +81,10 @@ int main(int argc, char *argv[]){
     // test_search_command(&commandManager);
     // test_bye_command(&commandManager);
     // test_save_command(&commandManager);
-    test_load_command(&commandManager);
+    // test_load_command(&commandManager);
 
     //test_load_command(&commandManager);
-    //run();
+    run();
     
     return 0;
 }
@@ -95,7 +95,7 @@ void run(){
     cout << "Welcome to the mediatheque" << endl;
     while(1){
         cout << endl << "Please enter a command" << endl;
-        cout << "Type HELP to get a list of commands" << endl;
+        cout << "Type HELP to get a list of commands" << endl << "> " ;
         getline(cin, command);
         commandManager.executeCommand(command);
     }
